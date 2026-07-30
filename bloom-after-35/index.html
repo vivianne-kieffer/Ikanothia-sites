@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom After 35 | Motherhood & Career for Women</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+        }
+
+        /* Color scheme */
+        :root {
+            --pink: #E84B89;
+            --purple: #8B5CF6;
+            --light-pink: #FDF0F7;
+            --light-purple: #F3E8FF;
+            --dark: #1F2937;
+            --text: #374151;
+        }
+
+        header {
+            background: linear-gradient(135deg, #E84B89 0%, #8B5CF6 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        header .logo {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        nav {
+            background: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        nav .brand {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 16px;
+        }
+
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--pink);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 20px;
+        }
+
+        .section h2 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark);
+            text-align: center;
+        }
+
+        .section p {
+            color: var(--text);
+            font-size: 1.05em;
+            line-height: 1.7;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .credentials {
+            background: var(--light-pink);
+            border-left: 4px solid var(--pink);
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--text);
+        }
+
+        .intro-text h3 {
+            font-size: 1.8em;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .programs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .program-header {
+            background: linear-gradient(135deg, #E84B89 0%, #EC6BA6 100%);
+            color: white;
+            padding: 30px 25px;
+            text-align: center;
+        }
+
+        .program-header h3 {
+            font-size: 1.6em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .program-header p {
+            font-size: 0.95em;
+            opacity: 0.95;
+            margin: 0;
+        }
+
+        .program-content {
+            padding: 30px 25px;
+        }
+
+        .program-content h4 {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .program-content ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .program-content li {
+            padding: 10px 0 10px 25px;
+            position: relative;
+            color: var(--text);
+            font-size: 0.95em;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .program-content li:last-child {
+            border-bottom: none;
+        }
+
+        .program-content li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--pink);
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #E84B89 0%, #8B5CF6 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95em;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(232, 75, 137, 0.4);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--light-purple) 100%);
+            padding: 60px 20px;
+            text-align: center;
+            margin: 60px 0 0 0;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .cta-section p {
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: var(--pink);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .section h2 {
+                font-size: 1.6em;
+            }
+
+            nav .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 5px 10px;
+                font-size: 13px;
+            }
+
+            .programs {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Bloom</div>
+        <h1>Bloom After 35</h1>
+        <p>Reinvention, resilience & growth for women over 35</p>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="brand">BLOOM</div>
+            <div>
+                <a href="#about">About</a>
+                <a href="#programs">Programs</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="section">
+        <div class="container">
+            <div class="credentials">
+                <strong>Vivianne Kieffer</strong> | Founder & Coach | ICF ACC Certified
+            </div>
+
+            <div class="intro-text">
+                <h3>Your Journey Matters</h3>
+                <p>Whether you're navigating motherhood, reinventing your career, or both — this stage of life is your time. Bloom After 35 is built for women who refuse to accept the old narrative.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="programs">
+        <div class="container">
+            <h2>Two Paths. Your Choice.</h2>
+            <p>Choose the journey that resonates with where you are right now.</p>
+
+            <div class="programs">
+                <div class="program-card">
+                    <div class="program-header">
+                        <h3>Elevate Your Career</h3>
+                        <p>Rise with confidence & authority</p>
+                    </div>
+                    <div class="program-content">
+                        <h4>For women ready to:</h4>
+                        <ul>
+                            <li>Step into leadership on their own terms</li>
+                            <li>Master executive presence & communication</li>
+                            <li>Navigate career transitions with clarity</li>
+                            <li>Build unshakeable confidence</li>
+                            <li>Influence across all directions</li>
+                        </ul>
+                        <p style="color: var(--text); font-size: 0.95em; margin-bottom: 20px;">Specialized coaching & frameworks to help you advance professionally while staying true to who you are.</p>
+                        <a href="#contact" class="btn">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-header" style="background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);">
+                        <h3>Embrace Motherhood</h3>
+                        <p>Navigate this profound journey with confidence</p>
+                    </div>
+                    <div class="program-content">
+                        <h4>For women exploring:</h4>
+                        <ul>
+                            <li>Planning, pregnancy & postpartum support</li>
+                            <li>Identity beyond motherhood</li>
+                            <li>Balancing multiple roles</li>
+                            <li>Reclaiming your sense of self</li>
+                            <li>Building community & connection</li>
+                        </ul>
+                        <p style="color: var(--text); font-size: 0.95em; margin-bottom: 20px;">Resources, coaching & community for every stage of your motherhood journey — from planning to navigating the joys and challenges ahead.</p>
+                        <a href="#contact" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <div class="container">
+            <h2>Ready to Bloom?</h2>
+            <p>High-value workbooks & coaching programs designed for women who are serious about growth.</p>
+            <p style="font-size: 0.95em; color: var(--text);">Structured programs coming soon. Finalized workbooks available on Gumroad.</p>
+            <a href="#contact" class="btn">Get in Touch</a>
+        </div>
+    </div>
+
+    <div class="section" id="contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <p>Questions about the programs? Ready to start your journey? Reach out.</p>
+
+            <form name="contact" method="POST" netlify style="max-width: 500px; margin: 40px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; font-size: 1em;">
+                <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; font-size: 1em;">
+                <select name="interest" style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; font-size: 1em;">
+                    <option value="">I'm interested in...</option>
+                    <option value="career">Elevate Your Career</option>
+                    <option value="motherhood">Embrace Motherhood</option>
+                    <option value="both">Both Programs</option>
+                    <option value="other">Just Say Hi</option>
+                </select>
+                <textarea name="message" rows="4" placeholder="Tell us about your journey..." required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; font-size: 1em; resize: vertical;"></textarea>
+                <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Bloom After 35. All rights reserved.</p>
+        <p>Email: <a href="mailto:vivianne@bloomafter35.com">vivianne@bloomafter35.com</a></p>
+    </footer>
+</body>
+</html>
