@@ -109,6 +109,17 @@ nav img{height:30px;width:auto;display:block}
 }
 .nav-cta:hover{background:var(--gold);color:var(--cream)!important}
 
+/* EN / ES switcher */
+.lang{display:inline-flex;align-items:center;gap:7px}
+.lang a{
+  font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink-soft);
+  padding-bottom:3px;border-bottom:1px solid transparent;transition:.25s;
+}
+.lang a:hover{color:var(--wine);border-bottom-color:var(--gold)}
+.lang a.on{color:var(--wine);border-bottom-color:var(--gold)}
+.lang-sep{color:var(--rule);font-size:12px}
+
 /* ============ BUTTONS ============ */
 .btn{
   display:inline-block;text-decoration:none;cursor:pointer;
