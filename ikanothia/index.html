@@ -4,346 +4,209 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ikanothia — Liderazgo con Sustancia | Leadership with Depth</title>
+<meta name="description" content="Ikanothia es una marca de desarrollo de liderazgo y educación ejecutiva para managers, líderes corporativos y HR en LATAM. Formación estructurada, con criterio. Fundada por Vivianne Kieffer, ICF ACC.">
+<link rel="alternate" hreflang="es" href="index.html">
+<link rel="alternate" hreflang="en" href="en/index.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --navy: #0f1e35;
-    --navy-mid: #1a3050;
-    --bronze: #9a7b4f;
-    --bronze-light: #c4a46b;
-    --stone: #8a8a7e;
-    --cream: #f5f2ec;
-    --off-white: #faf9f6;
-    --charcoal: #2c2c2c;
-    --rule: rgba(154,123,79,0.25);
-  }
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--charcoal); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
-
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,242,236,0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); padding: 18px 48px; display: flex; align-items: center; justify-content: space-between; }
-  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; letter-spacing: 0.12em; color: var(--navy); text-transform: uppercase; text-decoration: none; }
-  .nav-logo span { color: var(--bronze); }
-  .nav-links { display: flex; gap: 36px; list-style: none; }
-  .nav-links a { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); text-decoration: none; font-weight: 400; opacity: 0.7; transition: opacity 0.2s; }
-  .nav-links a:hover { opacity: 1; }
-  .nav-cta { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; background: var(--navy); color: var(--cream); padding: 10px 24px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; text-decoration: none; transition: background 0.2s; display: inline-block; }
-  .nav-cta:hover { background: var(--bronze); }
-
-  .hero { min-height: 100vh; background: var(--navy); display: grid; place-items: center; padding: 120px 48px 80px; position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(154,123,79,0.08) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 10% 80%, rgba(154,123,79,0.05) 0%, transparent 60%); }
-  .hero-inner { max-width: 900px; width: 100%; position: relative; z-index: 1; text-align: center; }
-  .hero-eyebrow { display: inline-flex; align-items: center; gap: 16px; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bronze-light); margin-bottom: 40px; }
-  .hero-eyebrow::before, .hero-eyebrow::after { content: ''; display: block; width: 40px; height: 1px; background: var(--bronze-light); opacity: 0.5; }
-  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(54px, 8vw, 96px); font-weight: 300; line-height: 1.02; color: var(--cream); letter-spacing: -0.01em; margin-bottom: 12px; }
-  .hero-title em { font-style: italic; color: var(--bronze-light); }
-  .hero-divider { width: 1px; height: 60px; background: var(--rule); margin: 32px auto; opacity: 0.6; }
-  .hero-tagline { font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2.5vw, 26px); font-weight: 300; font-style: italic; color: rgba(245,242,236,0.65); margin-bottom: 16px; letter-spacing: 0.02em; }
-  .hero-sub { font-size: 14px; font-weight: 300; letter-spacing: 0.04em; color: rgba(245,242,236,0.45); margin-bottom: 56px; max-width: 580px; margin-left: auto; margin-right: auto; }
-  .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .btn-primary { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; background: var(--bronze); color: var(--cream); padding: 16px 36px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; text-decoration: none; transition: background 0.2s; display: inline-block; }
-  .btn-primary:hover { background: var(--bronze-light); }
-  .btn-outline { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; background: transparent; color: var(--cream); padding: 16px 36px; border: 1px solid rgba(245,242,236,0.25); cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 400; text-decoration: none; transition: border-color 0.2s, color 0.2s; display: inline-block; }
-  .btn-outline:hover { border-color: var(--bronze-light); color: var(--bronze-light); }
-  .hero-greek { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); font-family: 'Cormorant Garamond', serif; font-size: 120px; font-weight: 300; color: rgba(154,123,79,0.06); letter-spacing: -0.05em; pointer-events: none; user-select: none; writing-mode: vertical-rl; }
-
-  section { padding: 100px 48px; }
-  .section-inner { max-width: 1080px; margin: 0 auto; }
-  .section-label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bronze); margin-bottom: 16px; font-weight: 400; }
-  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 58px); font-weight: 300; line-height: 1.1; color: var(--navy); margin-bottom: 24px; }
-  .section-title em { font-style: italic; color: var(--bronze); }
-
-  .about { background: var(--cream); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .about-text p { font-size: 16px; font-weight: 300; color: #444; line-height: 1.8; margin-bottom: 20px; }
-  .about-text p strong { font-weight: 500; color: var(--navy); }
-  .about-text-en { padding-top: 32px; border-top: 1px solid var(--rule); margin-top: 32px; }
-  .about-text-en p { font-size: 14px; color: var(--stone); }
-  .about-aside { padding-left: 48px; border-left: 1px solid var(--rule); }
-  .about-etymology { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: var(--navy); margin-bottom: 8px; font-style: italic; line-height: 1; }
-  .about-etymology-sub { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); margin-bottom: 40px; font-weight: 300; }
-  .pillars-mini { list-style: none; }
-  .pillars-mini li { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); padding: 14px 0; border-bottom: 1px solid var(--rule); display: flex; align-items: center; gap: 16px; font-weight: 400; }
-  .pillars-mini li::before { content: ''; display: block; width: 6px; height: 6px; background: var(--bronze); flex-shrink: 0; }
-
-  .pillars { background: var(--navy); }
-  .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 60px; }
-  .pillar-card { background: rgba(255,255,255,0.04); padding: 48px 32px; border-top: 2px solid var(--bronze); transition: background 0.3s; }
-  .pillar-card:hover { background: rgba(255,255,255,0.07); }
-  .pillar-num { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: rgba(154,123,79,0.3); line-height: 1; margin-bottom: 24px; }
-  .pillar-name { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bronze-light); margin-bottom: 16px; font-weight: 400; }
-  .pillar-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: var(--cream); margin-bottom: 16px; line-height: 1.3; }
-  .pillar-desc { font-size: 13px; font-weight: 300; color: rgba(245,242,236,0.5); line-height: 1.7; }
-  .pillar-en { font-size: 12px; font-weight: 300; color: rgba(245,242,236,0.3); margin-top: 12px; font-style: italic; }
-
-  .programs { background: var(--off-white); }
-  .programs-intro { max-width: 620px; margin-bottom: 60px; }
-  .programs-intro p { font-size: 16px; font-weight: 300; color: #555; line-height: 1.8; }
-  .programs-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
-  .program-col-header { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bronze); margin-bottom: 24px; font-weight: 500; padding-bottom: 16px; border-bottom: 1px solid var(--rule); }
-  .program-card { padding: 28px 0; border-bottom: 1px solid var(--rule); }
-  .program-card:last-child { border-bottom: none; }
-  .program-badge { display: inline-block; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bronze); border: 1px solid var(--bronze); padding: 3px 10px; margin-bottom: 12px; font-weight: 500; }
-  .program-badge.launch { background: var(--bronze); color: var(--cream); }
-  .program-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: var(--navy); line-height: 1.2; margin-bottom: 10px; }
-  .program-name-en { font-size: 12px; font-weight: 300; color: var(--stone); margin-bottom: 10px; font-style: italic; }
-  .program-desc { font-size: 13px; font-weight: 300; color: #666; line-height: 1.65; }
-
-  .featured-course { background: var(--navy-mid); padding: 64px 48px; margin-top: 60px; position: relative; border-top: 2px solid var(--bronze); }
-  .featured-inner { display: grid; grid-template-columns: 5fr 6fr; gap: 56px; align-items: start; }
-  .featured-label { font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--bronze-light); margin-bottom: 20px; }
-  .featured-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 2.8vw, 36px); font-weight: 300; color: var(--cream); line-height: 1.25; margin-bottom: 20px; }
-  .featured-title em { font-style: italic; color: var(--bronze-light); display: block; margin-top: 4px; }
-  .featured-desc { font-size: 13.5px; font-weight: 300; color: rgba(245,242,236,0.65); line-height: 1.85; margin-bottom: 32px; }
-  .featured-modules { list-style: none; padding: 0; margin: 0; }
-  .featured-modules li { padding: 12px 0; border-bottom: 1px solid rgba(154,123,79,0.15); display: flex; flex-direction: row; gap: 14px; align-items: flex-start; }
-  .featured-modules li .mod-num { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--bronze); width: 22px; min-width: 22px; flex-shrink: 0; line-height: 1.4; }
-  .featured-modules li .mod-text { font-size: 13px; font-weight: 400; color: rgba(245,242,236,0.82); line-height: 1.6; flex: 1; }
-
-  .for-hr { background: var(--cream); }
-  .for-hr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .for-hr-list { list-style: none; margin-top: 32px; }
-  .for-hr-list li { padding: 16px 0; border-bottom: 1px solid var(--rule); font-size: 15px; font-weight: 300; color: #444; display: flex; gap: 20px; align-items: flex-start; line-height: 1.5; }
-  .for-hr-list li::before { content: '→'; color: var(--bronze); font-size: 14px; flex-shrink: 0; margin-top: 2px; }
-  .for-hr-right { padding: 48px; background: var(--navy); color: var(--cream); }
-
-  .founder { background: var(--off-white); }
-  .founder-inner { display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: start; }
-  .founder-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 2.8vw, 34px); font-weight: 300; font-style: italic; color: var(--navy); line-height: 1.4; margin-bottom: 32px; padding-left: 24px; border-left: 2px solid var(--bronze); }
-  .founder-bio { font-size: 14px; font-weight: 300; color: #555; line-height: 1.8; margin-bottom: 16px; }
-  .founder-credentials { list-style: none; margin-top: 32px; }
-  .founder-credentials li { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--stone); padding: 10px 0; border-bottom: 1px solid var(--rule); display: flex; gap: 12px; }
-  .founder-credentials li::before { content: '·'; color: var(--bronze); }
-
-  /* CONTACT */
-  .contact-section { background: var(--navy); padding: 100px 48px; }
-  .contact-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .contact-left .section-title { color: var(--cream); }
-  .contact-left .section-label { color: var(--bronze-light); }
-  .contact-left > p { font-size: 15px; font-weight: 300; color: rgba(245,242,236,0.6); line-height: 1.8; margin-top: 20px; }
-
-  .goodie-box { background: rgba(154,123,79,0.08); border: 1px solid rgba(154,123,79,0.3); padding: 28px 32px; margin-top: 32px; }
-  .goodie-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bronze-light); margin-bottom: 12px; }
-  .goodie-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--cream); margin-bottom: 10px; line-height: 1.3; }
-  .goodie-desc { font-size: 13px; font-weight: 300; color: rgba(245,242,236,0.55); line-height: 1.7; }
-  .goodie-items { list-style: none; margin-top: 14px; }
-  .goodie-items li { font-size: 12px; font-weight: 300; color: rgba(245,242,236,0.65); padding: 6px 0; display: flex; gap: 10px; align-items: flex-start; }
-  .goodie-items li::before { content: '✓'; color: var(--bronze-light); font-size: 11px; margin-top: 2px; flex-shrink: 0; }
-
-  .contact-form-wrap { background: var(--cream); padding: 48px; }
-  .form-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--navy); margin-bottom: 8px; }
-  .form-subtitle { font-size: 13px; font-weight: 300; color: var(--stone); margin-bottom: 32px; line-height: 1.6; }
-  .form-group { margin-bottom: 20px; }
-  .form-group label { display: block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin-bottom: 8px; font-weight: 500; }
-  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 13px 16px; background: white; border: 1px solid rgba(154,123,79,0.2); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; color: var(--charcoal); outline: none; transition: border-color 0.2s; border-radius: 0; -webkit-appearance: none; }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--bronze); }
-  .form-group textarea { resize: vertical; min-height: 90px; }
-  .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239a7b4f' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .form-submit { width: 100%; padding: 16px; background: var(--navy); color: var(--cream); font-family: 'DM Sans', sans-serif; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; border: none; cursor: pointer; transition: background 0.2s; margin-top: 8px; }
-  .form-submit:hover { background: var(--bronze); }
-  .form-note { font-size: 11px; font-weight: 300; color: var(--stone); text-align: center; margin-top: 14px; line-height: 1.6; }
-
-  .form-success { display: none; text-align: center; padding: 40px 20px; }
-  .form-success .success-mark { font-family: 'Cormorant Garamond', serif; font-size: 48px; color: var(--bronze); margin-bottom: 20px; }
-  .form-success h3 { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 400; color: var(--navy); margin-bottom: 14px; }
-  .form-success p { font-size: 14px; font-weight: 300; color: #555; line-height: 1.8; }
-
-  footer { background: #080f1a; padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; }
-  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; letter-spacing: 0.16em; color: rgba(245,242,236,0.5); text-transform: uppercase; }
-  .footer-logo span { color: var(--bronze); }
-  .footer-copy { font-size: 11px; letter-spacing: 0.1em; color: rgba(245,242,236,0.25); text-align: center; }
-  .footer-coming { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bronze); opacity: 0.7; }
-
-  .lang-divider { display: flex; align-items: center; gap: 24px; margin: 48px 0 36px; }
-  .lang-divider::before, .lang-divider::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
-  .lang-divider-text { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); white-space: nowrap; }
-
-  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-  @media (max-width: 1100px) {
-    .featured-inner { grid-template-columns: 1fr; gap: 40px; }
-    .featured-course { padding: 52px 40px; }
-  }
-
-  @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    .nav-links { display: none; }
-    section, .contact-section { padding: 72px 24px; }
-    .hero { padding: 100px 24px 72px; }
-    .about-grid, .pillars-grid, .programs-grid, .for-hr-grid, .founder-inner, .featured-inner, .contact-inner { grid-template-columns: 1fr; }
-    .about-aside { padding-left: 0; border-left: none; padding-top: 32px; border-top: 1px solid var(--rule); }
-    .featured-course { padding: 40px 24px; }
-    .contact-form-wrap { padding: 32px 24px; }
-    .form-row { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 16px; text-align: center; }
-    .hero-greek { display: none; }
-    .why-fail-grid { grid-template-columns: 1fr !important; }
-  }
-</style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">I<span>·</span>KANOTHIA</a>
-  <ul class="nav-links">
-    <li><a href="#acerca">Acerca</a></li>
-    <li><a href="#programas">Para Individuos</a></li>
-    <li><a href="#para-hr">Para HR</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-  </ul>
-  <a href="https://preview.mailerlite.io/forms/2384350/191360253889087399/share" target="_blank" class="nav-cta">Solicitar información</a>
+  <div class="wrap">
+    <a href="#top" class="nav-logo">Ikanothia</a>
+    <ul class="nav-links">
+      <li><a href="#acerca">Acerca</a></li>
+      <li><a href="#programas">Programas</a></li>
+      <li><a href="para-hr.html">Para HR</a></li>
+      <li><a href="#ensayos">Ensayos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><span class="lang"><a class="on" href="index.html">ES</a><span class="lang-sep">/</span><a href="en/index.html">EN</a></span></li>
+      <li><a class="nav-cta" href="https://preview.mailerlite.io/forms/2384350/191360253889087399/share" target="_blank" rel="noopener">Solicitar</a></li>
+    </ul>
+  </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-eyebrow">ικανότητα · Leadership Development</div>
-    <h1 class="hero-title">Liderazgo<br>con <em>Sustancia.</em></h1>
+<!-- HERO -->
+<header class="hero velvet" id="top">
+  <div class="wrap hero-inner">
+    <div class="hero-eyebrow"><span class="greek">ικανότητα</span> &nbsp;·&nbsp; Leadership Development</div>
+    <h1>Liderazgo<br>con <em>Sustancia.</em></h1>
     <div class="hero-divider"></div>
-    <p class="hero-tagline">Arquitectura estructurada de desarrollo directivo</p>
-    <p class="hero-sub">Para managers y organizaciones que entienden que el liderazgo no se improvisa — se construye con profundidad, criterio y herramientas reales.</p>
+    <p class="tagline">Arquitectura estructurada de desarrollo directivo</p>
+    <p class="sub">Para managers y organizaciones que entienden que el liderazgo no se improvisa — se construye con profundidad, criterio y herramientas reales.</p>
     <div class="hero-actions">
-      <a href="https://preview.mailerlite.io/forms/2384350/191360253889087399/share" target="_blank" class="btn-primary">Solicitar información</a>
-      <a href="#programas" class="btn-outline">Ver programas</a>
+      <a href="https://preview.mailerlite.io/forms/2384350/191360253889087399/share" target="_blank" rel="noopener" class="btn btn-gold">Solicitar información</a>
+      <a href="#programas" class="btn btn-ghost">Ver programas</a>
     </div>
   </div>
   <div class="hero-greek">ικανότητα</div>
-</section>
+</header>
 
+<!-- ABOUT -->
 <section class="about" id="acerca">
-  <div class="section-inner">
-    <div class="about-grid fade-in">
+  <div class="wrap">
+    <div class="about-grid">
       <div class="about-text">
-        <div class="section-label">Sobre Ikanothia</div>
-        <h2 class="section-title">No es coaching.<br>Es <em>arquitectura</em> de liderazgo.</h2>
+        <span class="eyebrow">Sobre Ikanothia</span>
+        <h2>No es coaching.<br>Es <em>arquitectura</em> de liderazgo.</h2>
         <p><strong>Ikanothia</strong> es una marca de desarrollo de liderazgo y educación ejecutiva enfocada en first-time managers, líderes corporativos y departamentos de HR en empresas globales de LATAM.</p>
         <p>Opera en la intersección de Management, Resiliencia, Ejecución de Proyectos y Filosofía aplicada al liderazgo — combinando rigor intelectual con herramientas que funcionan en el mundo real.</p>
         <p>Esto no es motivación ni coaching genérico. Es desarrollo estructurado, fundamentado en experiencia directiva real: equipos de hasta 120 personas en múltiples continentes, gestión cross-cultural, y ejecución de proyectos complejos.</p>
         <div class="about-text-en">
-          <p><em>Ikanothia is a leadership development and executive education brand focused on first-time managers, corporate leaders, and HR departments in global organizations. Structured. Intellectual. Grounded. Leadership with depth — not noise.</em></p>
+          <p>Ikanothia is a leadership development and executive education brand focused on first-time managers, corporate leaders, and HR departments in global organizations. Structured. Intellectual. Grounded. Leadership with depth — not noise.</p>
         </div>
       </div>
-      <div class="about-aside">
-        <div class="about-etymology">ικανότητα</div>
-        <div class="about-etymology-sub">Capacidad · Competencia · Excelencia cultivada</div>
+      <aside class="about-aside">
+        <div class="etymology">ικανότητα</div>
+        <div class="etymology-sub">Capacidad · Competencia · Excelencia cultivada</div>
         <ul class="pillars-mini">
-          <li>Management & Liderazgo Directivo</li>
+          <li>Management &amp; Liderazgo Directivo</li>
           <li>Comunicación Ejecutiva</li>
           <li>Project Management para Managers</li>
           <li>Resiliencia Organizacional</li>
           <li>Filosofía Aplicada al Liderazgo</li>
-          <li>AI & El Futuro del Management</li>
+          <li>AI &amp; El Futuro del Management</li>
         </ul>
-      </div>
+      </aside>
     </div>
   </div>
 </section>
 
-<section class="pillars">
-  <div class="section-inner">
-    <div class="fade-in">
-      <div class="section-label" style="color:var(--bronze-light)">Los Pilares</div>
-      <h2 class="section-title" style="color:var(--cream)">Cuatro dimensiones del<br><em>liderazgo con profundidad.</em></h2>
+<!-- FLAGSHIP FILM -->
+<section class="film velvet" id="programa-estrella">
+  <div class="wrap">
+    <span class="eyebrow">Programa Insignia</span>
+    <h2>Manager Overnight</h2>
+    <div class="hairline"></div>
+    <p>Un día no eres manager. Al siguiente, lo eres. Sin manual. Sin las herramientas que nadie te dio cuando te ascendieron. Este es el sistema.</p>
+    <div class="film-frame">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/8wT5iW_Hb1k"
+        title="Manager Overnight — A Structured System for Your First 90 Days as a Leader"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
     </div>
-    <div class="pillars-grid fade-in">
-      <div class="pillar-card">
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars velvet">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Los Pilares</span>
+      <h2 style="color:var(--cream)">Cuatro dimensiones del<br><em>liderazgo con profundidad.</em></h2>
+      <div class="hairline"></div>
+    </div>
+    <div class="pillars-grid">
+
+      <article class="pillar-card">
         <div class="pillar-num">01</div>
         <div class="pillar-name">Management</div>
-        <div class="pillar-title">Capacidad directiva integral</div>
+        <h3 class="pillar-title">Capacidad directiva integral</h3>
         <p class="pillar-desc">Sistemas de performance, gestión de proyectos, change management y liderazgo cross-cultural. Dirección efectiva con responsabilidad y visión estratégica.</p>
         <p class="pillar-en">Effective direction with responsibility and strategic vision.</p>
-      </div>
-      <div class="pillar-card">
+      </article>
+
+      <article class="pillar-card">
         <div class="pillar-num">02</div>
         <div class="pillar-name">Comunicación</div>
-        <div class="pillar-title">Influencia estratégica y presencia ejecutiva</div>
+        <h3 class="pillar-title">Influencia estratégica y presencia ejecutiva</h3>
         <p class="pillar-desc">Comunicación que alinea, influye y construye credibilidad — desde conversaciones difíciles hasta presentaciones de alto impacto.</p>
         <p class="pillar-en">Communication that aligns, influences, and builds credibility.</p>
-      </div>
-      <div class="pillar-card">
+      </article>
+
+      <article class="pillar-card">
         <div class="pillar-num">03</div>
         <div class="pillar-name">Resiliencia</div>
-        <div class="pillar-title">Arquitectura de resiliencia organizacional</div>
+        <h3 class="pillar-title">Arquitectura de resiliencia organizacional</h3>
         <p class="pillar-desc">Basada en ciencia. Fortaleza estructural frente a la complejidad. Energía, límites y sostenibilidad del liderazgo a largo plazo.</p>
         <p class="pillar-en">Structural strength in the face of complexity.</p>
-      </div>
-      <div class="pillar-card">
+      </article>
+
+      <article class="pillar-card">
         <div class="pillar-num">04</div>
         <div class="pillar-name">Filosofía del Liderazgo</div>
-        <div class="pillar-title">Frameworks de pensamiento para decisiones con criterio</div>
+        <h3 class="pillar-title">Frameworks de pensamiento para decisiones con criterio</h3>
         <p class="pillar-desc">No es filosofía académica. Es pensamiento clásico aplicado: marcos de referencia del estoicismo, la ética y la dialéctica que equipan al manager con criterio duradero para tomar mejores decisiones — hoy, mañana y siempre.</p>
         <p class="pillar-en">Classical frameworks for modern decisions. Tools for thinking, not just doing.</p>
-      </div>
+      </article>
+
     </div>
   </div>
 </section>
 
 <!-- WHY MANAGERS FAIL -->
-<section style="background:var(--cream);padding:80px 48px">
-  <div class="section-inner">
-    <div class="fade-in">
-      <div class="section-label">El problema que resolvemos</div>
-      <h2 class="section-title">Por qué fracasan los managers<br><em>— y cómo lo resolvemos.</em></h2>
-      <p style="font-size:15px;font-weight:300;color:#555;line-height:1.8;max-width:640px;margin-bottom:48px">La investigación del Center for Creative Leadership muestra que el 60% de los managers nunca recibe formación alguna al ser promovidos. Se les asciende por su competencia técnica — y se les abandona con el reto de liderar personas. El resultado es predecible.</p>
+<section class="whyfail">
+  <div class="wrap">
+    <div class="section-head" style="text-align:left;margin-bottom:12px">
+      <span class="eyebrow" style="display:block;margin-bottom:12px">El problema que resolvemos</span>
+      <h2 style="text-align:left">Por qué fracasan los managers <em>— y cómo lo resolvemos.</em></h2>
     </div>
-    <div class="why-fail-grid fade-in" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px">
+    <p style="font-size:16px;color:var(--ink-soft);max-width:680px;margin-top:24px">La investigación del Center for Creative Leadership muestra que el 60% de los managers nunca recibe formación alguna al ser promovidos. Se les asciende por su competencia técnica — y se les abandona con el reto de liderar personas. El resultado es predecible.</p>
 
-      <div style="background:white;padding:32px 28px;border-top:2px solid var(--bronze)">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:rgba(154,123,79,0.25);line-height:1;margin-bottom:16px">01</div>
-        <div style="font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">Promovidos sin preparación</div>
-        <p style="font-size:13px;font-weight:300;color:#555;line-height:1.7">Lo que los hizo excelentes como colaboradores no los convierte automáticamente en líderes. La transición requiere un cambio de identidad, no solo de título.</p>
-        <p style="font-size:11px;font-style:italic;color:var(--bronze);margin-top:12px">Lo que hacemos: estructura, frameworks y acompañamiento desde el día uno.</p>
+    <div class="whyfail-grid">
+
+      <div class="whyfail-card">
+        <div class="whyfail-num">01</div>
+        <div class="whyfail-label">Promovidos sin preparación</div>
+        <p class="whyfail-desc">Lo que los hizo excelentes como colaboradores no los convierte automáticamente en líderes. La transición requiere un cambio de identidad, no solo de título.</p>
+        <p class="whyfail-what">Lo que hacemos: estructura, frameworks y acompañamiento desde el día uno.</p>
       </div>
 
-      <div style="background:white;padding:32px 28px;border-top:2px solid var(--bronze)">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:rgba(154,123,79,0.25);line-height:1;margin-bottom:16px">02</div>
-        <div style="font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">Sin herramientas de gestión</div>
-        <p style="font-size:13px;font-weight:300;color:#555;line-height:1.7">Sin un modelo de PM, los managers improvisan, micromanageean o pierden el control del trabajo de su equipo. El caos operativo destruye la credibilidad antes de comenzar.</p>
-        <p style="font-size:11px;font-style:italic;color:var(--bronze);margin-top:12px">Lo que hacemos: PM para Managers — las herramientas esenciales, sin la complejidad innecesaria.</p>
+      <div class="whyfail-card">
+        <div class="whyfail-num">02</div>
+        <div class="whyfail-label">Sin herramientas de gestión</div>
+        <p class="whyfail-desc">Sin un modelo de PM, los managers improvisan, micromanageean o pierden el control del trabajo de su equipo. El caos operativo destruye la credibilidad antes de comenzar.</p>
+        <p class="whyfail-what">Lo que hacemos: PM para Managers — las herramientas esenciales, sin la complejidad innecesaria.</p>
       </div>
 
-      <div style="background:white;padding:32px 28px;border-top:2px solid var(--bronze)">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:rgba(154,123,79,0.25);line-height:1;margin-bottom:16px">03</div>
-        <div style="font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">Evitan conversaciones difíciles</div>
-        <p style="font-size:13px;font-weight:300;color:#555;line-height:1.7">El feedback deficiente y la evitación del conflicto destruyen la performance de los equipos en silencio. El manager que no puede tener conversaciones directas pierde autoridad progresivamente.</p>
-        <p style="font-size:11px;font-style:italic;color:var(--bronze);margin-top:12px">Lo que hacemos: modelos concretos — SBI, GROW, accountability conversations.</p>
+      <div class="whyfail-card">
+        <div class="whyfail-num">03</div>
+        <div class="whyfail-label">Evitan conversaciones difíciles</div>
+        <p class="whyfail-desc">El feedback deficiente y la evitación del conflicto destruyen la performance de los equipos en silencio. El manager que no puede tener conversaciones directas pierde autoridad progresivamente.</p>
+        <p class="whyfail-what">Lo que hacemos: modelos concretos — SBI, GROW, accountability conversations.</p>
       </div>
 
-      <div style="background:white;padding:32px 28px;border-top:2px solid var(--navy)">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:rgba(15,30,53,0.12);line-height:1;margin-bottom:16px">04</div>
-        <div style="font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">Sin presencia ni comunicación ejecutiva</div>
-        <p style="font-size:13px;font-weight:300;color:#555;line-height:1.7">Comunican hacia arriba, hacia abajo y de forma lateral sin estructura ni impacto. Pierden credibilidad con su equipo y con sus superiores simultáneamente.</p>
-        <p style="font-size:11px;font-style:italic;color:var(--bronze);margin-top:12px">Lo que hacemos: comunicación estratégica, presencia ejecutiva y stakeholder mapping.</p>
+      <div class="whyfail-card">
+        <div class="whyfail-num">04</div>
+        <div class="whyfail-label">Sin presencia ni comunicación ejecutiva</div>
+        <p class="whyfail-desc">Comunican hacia arriba, hacia abajo y de forma lateral sin estructura ni impacto. Pierden credibilidad con su equipo y con sus superiores simultáneamente.</p>
+        <p class="whyfail-what">Lo que hacemos: comunicación estratégica, presencia ejecutiva y stakeholder mapping.</p>
       </div>
 
-      <div style="background:white;padding:32px 28px;border-top:2px solid var(--navy)">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:rgba(15,30,53,0.12);line-height:1;margin-bottom:16px">05</div>
-        <div style="font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">Toman decisiones sin criterio</div>
-        <p style="font-size:13px;font-weight:300;color:#555;line-height:1.7">Decisiones reactivas, sin marco ético ni visión estratégica. La Filosofía del Liderazgo no es teoría — son herramientas de pensamiento que dan criterio duradero frente a la complejidad.</p>
-        <p style="font-size:11px;font-style:italic;color:var(--bronze);margin-top:12px">Lo que hacemos: frameworks del estoicismo y la dialéctica aplicados al management real.</p>
+      <div class="whyfail-card">
+        <div class="whyfail-num">05</div>
+        <div class="whyfail-label">Toman decisiones sin criterio</div>
+        <p class="whyfail-desc">Decisiones reactivas, sin marco ético ni visión estratégica. La Filosofía del Liderazgo no es teoría — son herramientas de pensamiento que dan criterio duradero frente a la complejidad.</p>
+        <p class="whyfail-what">Lo que hacemos: frameworks del estoicismo y la dialéctica aplicados al management real.</p>
       </div>
 
-      <div style="background:var(--navy);padding:32px 28px;border-top:2px solid var(--bronze)">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:rgba(154,123,79,0.3);line-height:1;margin-bottom:16px">06</div>
-        <div style="font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--bronze-light);margin-bottom:10px">Burnout sin sistemas de resiliencia</div>
-        <p style="font-size:13px;font-weight:300;color:rgba(245,242,236,0.65);line-height:1.7">El management sin límites, sin energía gestionada y sin estrategia de sostenibilidad destruye al manager — y con él, a su equipo. La resiliencia es una arquitectura, no una actitud.</p>
-        <p style="font-size:11px;font-style:italic;color:var(--bronze-light);margin-top:12px">Lo que hacemos: sistemas de energía, límites profesionales y resiliencia organizacional.</p>
+      <div class="whyfail-card dark">
+        <div class="whyfail-num">06</div>
+        <div class="whyfail-label">Burnout sin sistemas de resiliencia</div>
+        <p class="whyfail-desc">El management sin límites, sin energía gestionada y sin estrategia de sostenibilidad destruye al manager — y con él, a su equipo. La resiliencia es una arquitectura, no una actitud.</p>
+        <p class="whyfail-what">Lo que hacemos: sistemas de energía, límites profesionales y resiliencia organizacional.</p>
       </div>
 
     </div>
   </div>
 </section>
 
+<!-- PROGRAMS -->
 <section class="programs" id="programas">
-  <div class="section-inner">
-    <div class="fade-in">
-      <div class="section-label">Programas 2025–2026</div>
-      <h2 class="section-title">Formación diseñada para<br><em>el manager real.</em></h2>
-      <div class="programs-intro"><p>Cursos online, programas híbridos y formaciones corporativas in-site. Todos con la misma premisa: profundidad intelectual, aplicación inmediata, resultados que se sostienen.</p></div>
+  <div class="wrap">
+    <div class="section-head" style="text-align:left;margin-bottom:12px">
+      <span class="eyebrow" style="display:block;margin-bottom:12px">Programas 2025–2026</span>
+      <h2 style="text-align:left">Formación diseñada para <em>el manager real.</em></h2>
     </div>
-    <div class="programs-grid fade-in">
+    <div class="programs-intro"><p>Cursos online, programas híbridos y formaciones corporativas in-site. Todos con la misma premisa: profundidad intelectual, aplicación inmediata, resultados que se sostienen.</p></div>
+
+    <div class="programs-grid">
+
       <div class="program-col">
         <div class="program-col-header">Online · Español</div>
         <div class="program-card">
@@ -365,6 +228,7 @@
           <p class="program-desc">Comunicación ejecutiva de alto impacto. Estructura, voz, presencia y credibilidad en reuniones y espacios de poder.</p>
         </div>
       </div>
+
       <div class="program-col">
         <div class="program-col-header">Híbrido · Cohort + Coaching</div>
         <div class="program-card">
@@ -380,6 +244,7 @@
           <p class="program-desc">Pensamiento clásico aplicado a decisiones corporativas. Estoicismo, ética y criterio para el manager del siglo XXI.</p>
         </div>
       </div>
+
       <div class="program-col">
         <div class="program-col-header">In-Site · Corporativo</div>
         <div class="program-card">
@@ -401,15 +266,16 @@
           <p class="program-desc">Mesa redonda ejecutiva. Debate filosófico aplicado a los grandes desafíos del liderazgo contemporáneo.</p>
         </div>
       </div>
+
     </div>
 
-    <div class="featured-course fade-in">
+    <div class="featured">
       <div class="featured-inner">
         <div>
           <div class="featured-label">Curso Estrella · Disponible ahora</div>
-          <h3 class="featured-title">PM para Managers: <em>Las Herramientas que Nadie te Enseñó</em></h3>
+          <h3>PM para Managers: <em>Las Herramientas que Nadie te Enseñó</em></h3>
           <p class="featured-desc">No necesitas ser PMP. Necesitas el sistema correcto: un charter que protege tu proyecto desde el día uno, un mapa de poder que identifica quién decide realmente, un enfoque Agile adaptado a managers corporativos, y la inteligencia artificial como tu aliada táctica — no como amenaza. Diseñado por una manager PMI que lideró equipos en 4 continentes.</p>
-          <a href="https://preview.mailerlite.io/forms/2384350/191360253889087399/share" target="_blank" class="btn-primary">Quiero este curso →</a>
+          <a href="https://preview.mailerlite.io/forms/2384350/191360253889087399/share" target="_blank" rel="noopener" class="btn btn-gold">Quiero este curso →</a>
         </div>
         <div>
           <ul class="featured-modules">
@@ -427,14 +293,15 @@
   </div>
 </section>
 
-<section class="for-hr" id="para-hr">
-  <div class="section-inner">
-    <div class="for-hr-grid fade-in">
+<!-- FOR HR -->
+<section class="forhr" id="para-hr">
+  <div class="wrap">
+    <div class="forhr-grid">
       <div>
-        <div class="section-label">Para Departamentos de HR</div>
-        <h2 class="section-title">Desarrollo de liderazgo<br><em>que escala.</em></h2>
-        <p style="font-size:15px;font-weight:300;color:#555;line-height:1.8;margin-top:16px">Diseñado para equipos de Talent Development y L&D que necesitan más que un taller: un sistema de desarrollo directivo que genera resultados medibles y pipeline real.</p>
-        <ul class="for-hr-list">
+        <span class="eyebrow" style="display:block;margin-bottom:16px">Para Departamentos de HR</span>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,4.2vw,48px);line-height:1.14;color:var(--navy)">Desarrollo de liderazgo<br><em style="color:var(--bronze)">que escala.</em></h2>
+        <p style="font-size:16px;color:var(--ink-soft);margin-top:20px">Diseñado para equipos de Talent Development y L&amp;D que necesitan más que un taller: un sistema de desarrollo directivo que genera resultados medibles y pipeline real.</p>
+        <ul class="forhr-list">
           <li>Programas estructurados de desarrollo de liderazgo para nuevos managers</li>
           <li>Pipeline gerencial sólido: de colaborador a líder con criterio</li>
           <li>Alineación organizacional a través de un lenguaje directivo común</li>
@@ -442,32 +309,33 @@
           <li>Métricas de impacto y seguimiento post-programa</li>
           <li>Facilitación bilingual (Español / Inglés) para equipos regionales</li>
         </ul>
-        <div class="lang-divider"><div class="lang-divider-text">English version</div></div>
-        <p style="font-size:13px;font-weight:300;color:var(--stone);line-height:1.8;font-style:italic">Designed for HR departments seeking structured leadership development, a solid managerial pipeline, organizational alignment, and scalable programs that deliver measurable results across LATAM operations.</p>
+        <p style="margin-top:36px"><a href="para-hr.html" class="btn btn-outline-navy">Ver la propuesta completa para HR →</a></p>
       </div>
+
       <div>
-        <div class="for-hr-right">
-          <div class="section-label" style="color:var(--bronze-light)">Por qué Ikanothia</div>
-          <h3 class="section-title" style="color:var(--cream);font-size:28px">Management real,<br>enseñado desde adentro.</h3>
-          <p style="font-size:14px;font-weight:300;color:rgba(245,242,236,0.65);line-height:1.8;margin-top:20px">Ikanothia no viene del mundo académico ni del coaching motivacional. Viene de organizaciones como EY Global Delivery Services, World Bank Group e IFC — donde gestionar proyectos complejos, liderar equipos multiculturales y entregar resultados bajo presión no es teoría.</p>
-          <p style="font-size:14px;font-weight:300;color:rgba(245,242,236,0.65);line-height:1.8;margin-top:16px">PMP®, PRINCE2®, Scrum, Change Management y Executive Coaching. Cinco certificaciones. Una sola misión: dar a los managers las herramientas que nadie les dio cuando fueron promovidos.</p>
-          <p style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(154,123,79,0.2);font-style:italic;color:var(--bronze-light);font-family:'Cormorant Garamond',serif;font-size:18px">Substance over noise. Leadership with depth.</p>
+        <div class="forhr-right">
+          <span class="eyebrow">Por qué Ikanothia</span>
+          <h3>Management real,<br>enseñado desde adentro.</h3>
+          <p>Ikanothia no viene del mundo académico ni del coaching motivacional. Viene de organizaciones como EY Global Delivery Services, World Bank Group e IFC — donde gestionar proyectos complejos, liderar equipos multiculturales y entregar resultados bajo presión no es teoría.</p>
+          <p>PMP®, PRINCE2®, Scrum, Change Management y Executive Coaching. Cinco certificaciones. Una sola misión: dar a los managers las herramientas que nadie les dio cuando fueron promovidos.</p>
+          <p class="forhr-tagline">Substance over noise. Leadership with depth.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="founder">
-  <div class="section-inner">
-    <div class="founder-inner fade-in">
-      <div class="founder-left">
-        <div class="section-label">La Fundadora</div>
+<!-- FOUNDER -->
+<section class="founder" id="fundadora">
+  <div class="wrap">
+    <div class="founder-grid">
+      <div>
+        <span class="eyebrow" style="display:block;margin-bottom:16px">La Fundadora</span>
         <blockquote class="founder-quote">"El liderazgo no se improvisa. Se construye con criterio, herramientas y la valentía de liderar con profundidad."</blockquote>
         <p class="founder-bio"><strong>Vivianne Kieffer</strong> — Senior Project Manager en EY Global Delivery Services, ex World Bank Group e IFC. Más de 10 años gestionando proyectos globales de marketing, comunicación y tecnología en entornos multiculturales y multirregionales.</p>
         <p class="founder-bio">Ha liderado equipos y proyectos en LATAM, Filipinas, Polonia e India. Diseñó y facilitó programas de desarrollo para organizaciones Tier 1 a nivel global. Certificada en Executive Coaching (ICF ACC), combina rigor técnico con acompañamiento personalizado. Fundadora de <strong>Bloom After 35</strong>. Trilingüe nativa: español, inglés y francés.</p>
         <ul class="founder-credentials">
-          <li>PMP® · PRINCE2® · PSM I® · SPS® — Project Management Institute & Scrum.org</li>
+          <li>PMP® · PRINCE2® · PSM I® · SPS® — Project Management Institute &amp; Scrum.org</li>
           <li>Executive Coaching Certification (ICF ACC) — International Coach Federation</li>
           <li>Change Management Practitioner — APMG International</li>
           <li>Executive Coaching — INCAE Business School</li>
@@ -476,27 +344,20 @@
           <li>ES · EN · FR nativos | Alemán avanzado | Polaco intermedio-avanzado</li>
         </ul>
       </div>
-      <div style="padding-top:48px">
-        <div style="background:var(--navy);padding:48px">
-          <div style="font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze-light);margin-bottom:24px">In English · For international partners</div>
-          <p style="font-size:15px;font-weight:300;color:rgba(245,242,236,0.7);line-height:1.9;font-style:italic">"I built Ikanothia because I saw brilliant people get promoted into management and left completely alone. No tools. No framework. No real guidance — just the expectation that talent would somehow translate into leadership. It doesn't. Leadership is architected. And that's exactly what we do here."</p>
-          <div style="margin-top:40px;padding-top:32px;border-top:1px solid rgba(154,123,79,0.2)">
-            <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:20px">Ikanothia opera en</div>
-            <div style="display:flex;gap:24px;flex-wrap:wrap">
-              <span style="font-size:13px;font-weight:300;color:rgba(245,242,236,0.6)">Rep. Dominicana</span>
-              <span style="color:var(--bronze);opacity:0.4">·</span>
-              <span style="font-size:13px;font-weight:300;color:rgba(245,242,236,0.6)">Paraguay</span>
-              <span style="color:var(--bronze);opacity:0.4">·</span>
-              <span style="font-size:13px;font-weight:300;color:rgba(245,242,236,0.6)">México</span>
-              <span style="color:var(--bronze);opacity:0.4">·</span>
-              <span style="font-size:13px;font-weight:300;color:rgba(245,242,236,0.6)">Colombia</span>
-              <span style="color:var(--bronze);opacity:0.4">·</span>
-              <span style="font-size:13px;font-weight:300;color:rgba(245,242,236,0.6)">Argentina</span>
-              <span style="color:var(--bronze);opacity:0.4">·</span>
-              <span style="font-size:13px;font-weight:300;color:rgba(245,242,236,0.6)">Chile · Perú · y toda LATAM</span>
-              <span style="color:var(--bronze);opacity:0.4">·</span>
-              <span style="font-size:13px;font-weight:300;color:rgba(245,242,236,0.6)">Global Online</span>
-            </div>
+
+      <div class="founder-right">
+        <span class="eyebrow">In English · For international partners</span>
+        <p>"I built Ikanothia because I saw brilliant people get promoted into management and left completely alone. No tools. No framework. No real guidance — just the expectation that talent would somehow translate into leadership. It doesn't. Leadership is architected. And that's exactly what we do here."</p>
+        <div class="reach">
+          <div class="reach-label">Ikanothia opera en</div>
+          <div class="reach-list">
+            <span>Rep. Dominicana</span><span class="dot">·</span>
+            <span>Paraguay</span><span class="dot">·</span>
+            <span>México</span><span class="dot">·</span>
+            <span>Colombia</span><span class="dot">·</span>
+            <span>Argentina</span><span class="dot">·</span>
+            <span>Chile · Perú · y toda LATAM</span><span class="dot">·</span>
+            <span>Global Online</span>
           </div>
         </div>
       </div>
@@ -504,137 +365,143 @@
   </div>
 </section>
 
-<!-- CONTACT WITH FORM -->
-<section class="contact-section" id="contacto">
-  <div class="contact-inner">
-    <div class="contact-left fade-in">
-      <div class="section-label">Siguiente Paso</div>
-      <h2 class="section-title">Construyamos liderazgo<br><em>con sustancia.</em></h2>
-      <p>¿Eres un manager buscando herramientas reales? ¿Un departamento de HR que necesita un socio estratégico? Empecemos la conversación.</p>
-      <p style="margin-top:6px;font-size:13px;font-style:italic;color:rgba(245,242,236,0.3)">Let's build leadership with depth.</p>
-
-      <div class="goodie-box">
-        <div class="goodie-label">Gratis al solicitar información</div>
-        <div class="goodie-title">PM Starter Kit — Las 3 Herramientas Esenciales</div>
-        <p class="goodie-desc">Diseñado por una manager PMI con experiencia real. No es un template genérico — es el kit que realmente usarás desde el primer día de proyecto.</p>
-        <ul class="goodie-items">
-          <li>Project Charter con budget, código de presupuesto, aprobadores clave, in/out scope y entregables</li>
-          <li>Stakeholder Matrix — mapa de poder, influencia y decisor final</li>
-          <li>Decision Log — qué se decidió, por qué, y qué opciones se descartaron</li>
-        </ul>
-      </div>
-
-      <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(154,123,79,0.15)">
-        <p style="font-size:12px;font-weight:300;color:rgba(245,242,236,0.35);margin-bottom:8px">O contáctanos directamente:</p>
-        <a href="mailto:info@ikanothia.com" style="font-size:15px;color:var(--bronze-light);text-decoration:none;font-weight:400;letter-spacing:0.03em">info@ikanothia.com</a>
-      </div>
+<!-- INSIGHTS -->
+<section class="insights" id="ensayos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Ensayos</span>
+      <h2>Palabras y <em>Pensamiento.</em></h2>
+      <div class="hairline"></div>
+      <p class="lede">Investigación, reflexión y frameworks aplicados al management real.</p>
     </div>
 
-    <div class="contact-form-wrap fade-in">
-      <div id="formContent">
-        <h3 class="form-title">Solicitar información</h3>
-        <p class="form-subtitle">Completa el formulario y recibe el PM Starter Kit gratuito + información personalizada sobre los programas que mejor se adaptan a tu situación.</p>
-        <form id="contactForm" onsubmit="handleSubmit(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="nombre">Nombre</label>
-              <input type="text" id="nombre" placeholder="Tu nombre" required>
-            </div>
-            <div class="form-group">
-              <label for="apellido">Apellido</label>
-              <input type="text" id="apellido" placeholder="Tu apellido" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="tu@email.com" required>
-          </div>
-          <div class="form-group">
-            <label for="empresa">Empresa u Organización</label>
-            <input type="text" id="empresa" placeholder="(opcional)">
-          </div>
-          <div class="form-group">
-            <label for="rol">Tu situación actual</label>
-            <select id="rol">
-              <option value="">Selecciona una opción</option>
-              <option>Soy nuevo/a manager (menos de 2 años)</option>
-              <option>Manager con experiencia buscando profundizar</option>
-              <option>Profesional preparándome para mi primer rol directivo</option>
-              <option>HR / Talent Development — programas corporativos</option>
-              <option>Otro</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="interes">¿Qué te interesa más?</label>
-            <select id="interes">
-              <option value="">Selecciona una opción</option>
-              <option>PM para Managers (curso online — lanzamiento)</option>
-              <option>New Manager Survival Kit</option>
-              <option>Leadership Launchpad (programa híbrido)</option>
-              <option>Programas corporativos in-site</option>
-              <option>Información general sobre Ikanothia</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="mensaje">Mensaje (opcional)</label>
-            <textarea id="mensaje" placeholder="Cuéntanos brevemente tu situación o pregunta..."></textarea>
-          </div>
-          <button type="submit" class="form-submit">Solicitar información y recibir kit gratuito →</button>
-          <p class="form-note">Recibirás el PM Starter Kit directamente en tu email.<br>Sin spam. Sin compromiso.</p>
-        </form>
-      </div>
-      <div class="form-success" id="formSuccess">
-        <div class="success-mark">✦</div>
-        <h3>¡Gracias por tu interés!</h3>
-        <p>Hemos recibido tu solicitud. En breve recibirás tu <strong>PM Starter Kit gratuito</strong> y la información personalizada que solicitaste.</p>
-        <p style="margin-top:16px;font-size:13px;color:var(--stone)">Preguntas urgentes: <a href="/cdn-cgi/l/email-protection#4e27252f20213a26272f0e29232f2722602d2123" style="color:var(--bronze)"><span class="__cf_email__" data-cfemail="452c2e242b2a312d2c24052228242c296b262a28">[email&#160;protected]</span></a></p>
-      </div>
+    <div class="insight-grid">
+      <a class="insight" href="ensayos/ensayo-uno.html">
+        <span class="kicker">Ensayo Uno</span>
+        <h3>El manager que nunca fue entrenado</h3>
+        <p>Sobre el 60% de los managers que nunca recibe formación al ser promovidos — y qué hacer al respecto desde el día uno.</p>
+        <span class="more">Leer el ensayo</span>
+      </a>
+
+      <a class="insight" href="ensayos/ensayo-dos.html">
+        <span class="kicker">Ensayo Dos</span>
+        <h3>Substance over noise</h3>
+        <p>Por qué el coaching motivacional no basta, y qué significa liderar con profundidad en el siglo XXI.</p>
+        <span class="more">Leer el ensayo</span>
+      </a>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="footer-logo">I<span>·</span>KANOTHIA</div>
-  <div class="footer-copy">© 2026 Ikanothia · Leadership with Depth · Liderazgo con Sustancia</div>
-  <div class="footer-coming">ikanothia.com · coming soon</div>
+<!-- CONTACT -->
+<section class="contact-section velvet" id="contacto">
+  <div class="wrap">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <span class="eyebrow">Siguiente Paso</span>
+        <h2>Construyamos liderazgo<br><em>con sustancia.</em></h2>
+        <p>¿Eres un manager buscando herramientas reales? ¿Un departamento de HR que necesita un socio estratégico? Empecemos la conversación.</p>
+        <p class="contact-tag">Let's build leadership with depth.</p>
+
+        <div class="goodie-box">
+          <div class="goodie-label">Gratis al solicitar información</div>
+          <div class="goodie-title">PM Starter Kit — Las 3 Herramientas Esenciales</div>
+          <p class="goodie-desc">Diseñado por una manager PMI con experiencia real. No es un template genérico — es el kit que realmente usarás desde el primer día de proyecto.</p>
+          <ul class="goodie-items">
+            <li>Project Charter con budget, código de presupuesto, aprobadores clave, in/out scope y entregables</li>
+            <li>Stakeholder Matrix — mapa de poder, influencia y decisor final</li>
+            <li>Decision Log — qué se decidió, por qué, y qué opciones se descartaron</li>
+          </ul>
+        </div>
+
+        <div class="contact-locale">
+          <a href="mailto:info@ikanothia.com">info@ikanothia.com</a>
+          <span style="opacity:.5"> &nbsp;·&nbsp; </span>
+          Asunción, Paraguay
+        </div>
+      </div>
+
+      <form name="contacto" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contacto">
+        <div style="margin-bottom:24px">
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--navy);margin-bottom:6px">Solicitar información</h3>
+          <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.6">Completa el formulario y recibe el PM Starter Kit gratuito + información personalizada sobre los programas que mejor se adaptan a tu situación.</p>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required>
+          </div>
+          <div class="field">
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="empresa">Empresa u Organización</label>
+          <input type="text" id="empresa" name="empresa" placeholder="(opcional)">
+        </div>
+        <div class="field">
+          <label for="rol">Tu situación actual</label>
+          <select id="rol" name="rol">
+            <option value="">Selecciona una opción</option>
+            <option>Soy nuevo/a manager (menos de 2 años)</option>
+            <option>Manager con experiencia buscando profundizar</option>
+            <option>Profesional preparándome para mi primer rol directivo</option>
+            <option>HR / Talent Development — programas corporativos</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="interes">¿Qué te interesa más?</label>
+          <select id="interes" name="interes">
+            <option value="">Selecciona una opción</option>
+            <option>PM para Managers (curso online — lanzamiento)</option>
+            <option>Manager Overnight (programa insignia)</option>
+            <option>New Manager Survival Kit</option>
+            <option>Leadership Launchpad (programa híbrido)</option>
+            <option>Programas corporativos in-site</option>
+            <option>Información general sobre Ikanothia</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mensaje">Mensaje (opcional)</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos brevemente tu situación o pregunta..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-navy">Solicitar información y recibir kit gratuito →</button>
+        <p class="form-note">Recibirás el PM Starter Kit directamente en tu email.<br>Sin spam. Sin compromiso.</p>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="velvet">
+  <div class="wrap">
+    <div class="foot-mark">Ikanothia</div>
+    <div class="footer-rule"></div>
+    <p><a href="mailto:info@ikanothia.com">info@ikanothia.com</a></p>
+    <p>Asunción, Paraguay</p>
+    <p>&copy; 2026 Ikanothia · Liderazgo con Sustancia · Leadership with Depth</p>
+  </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+<!-- ============================================================
+     WHATSAPP BUTTON — currently switched off.
+     To turn on: delete this opening marker and the closing marker
+     below, then replace PHONE with your full international number,
+     digits only, no + and no spaces. Example: 595981234567
+     ============================================================
+<a class="wa" href="https://wa.me/PHONE?text=Hola%20Vivianne%2C%20me%20gustaria%20saber%20mas%20sobre%20Ikanothia"
+   target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 0 1 6.988 2.896 9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.82 11.82 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 0 0-3.48-8.413Z"/></svg>
+</a>
+     ============================================================ -->
 
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const t = document.querySelector(a.getAttribute('href'));
-      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
-    });
-  });
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    const n = document.getElementById('nombre').value;
-    const ap = document.getElementById('apellido').value;
-    const em = document.getElementById('email').value;
-    const emp = document.getElementById('empresa').value;
-    const rol = document.getElementById('rol').value;
-    const int = document.getElementById('interes').value;
-    const msg = document.getElementById('mensaje').value;
-
-    const subject = encodeURIComponent('Solicitud de información — Ikanothia');
-    const body = encodeURIComponent([
-      `Nombre: ${n} ${ap}`,
-      `Email: ${em}`,
-      `Empresa: ${emp || '(no indicada)'}`,
-      `Situación: ${rol || '(no indicada)'}`,
-      `Interés: ${int || '(no indicado)'}`,
-      ``,
-      `Mensaje:`,
-      msg || '(sin mensaje adicional)'
-    ].join('\n'));
-
-    document.getElementById('formContent').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
-
-    // Opens email cl
+</body>
+</html>
