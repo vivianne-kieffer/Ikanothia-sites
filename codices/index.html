@@ -1,1000 +1,748 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Codices - Zócalo Espiritual de las Américas</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Codices | Cada muro, una historia</title>
+<meta name="description" content="Codices Decor y Codices Art: obras de Vivianne Kieffer y Gilbert Kieffer impresas en canvas, a la medida de cada muro, para departamentos, casas, torres y hoteles en Latinoam&#233;rica.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  /* Layout: a gallery catalogue. White rooms for the offer, one black "vitrine" for the Gold Collection,
+     inscriptional capitals for headings, every image hung in a thin gilt frame.
+     Single light theme by brand rule (white ground, gold left / silver right); the black band is a deliberate room. */
+  :root {
+    --paper: #FFFFFF;
+    --stone: #F6F4EF;
+    --ink: #1D1B18;
+    --muted: #5E5A53;
+    --bronze: #8B6914;
+    --gold: #D4AF37;
+    --gold-hi: #E9CF7A;
+    --silver: #C0C0C0;
+    --rule: #E6E2D8;
+    --night: #121110;
+    --night-ink: #EDE6D6;
+    --night-muted: #A9A190;
+    --display: "Cinzel", "Trajan Pro", "EB Garamond", Garamond, serif;
+    --serif: "EB Garamond", Garamond, "Garamond Premier Pro", "Times New Roman", serif;
+    --foil: linear-gradient(100deg, #8B6914 0%, #C9A232 30%, #E9CF7A 50%, #C9A232 70%, #8B6914 100%);
+    color-scheme: light;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--serif); font-size: 1.1875rem; line-height: 1.65;
+    font-variant-numeric: oldstyle-nums; overflow-x: hidden;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  p { margin: 0 0 1em; }
+  p:last-child { margin-bottom: 0; }
+  h1, h2, h3 { font-weight: 400; margin: 0; line-height: 1.15; text-wrap: balance; }
+  h2, h3.d { font-family: var(--display); letter-spacing: 0.06em; }
+  a { color: var(--bronze); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--bronze); outline-offset: 3px; }
+
+  body:not([data-lang="en"]) [data-l="en"], body[data-lang="en"] [data-l="es"] { display: none !important; }
+
+  .wrap { max-width: 74rem; margin: 0 auto; padding-inline: clamp(1rem, 5vw, 3rem); }
+  .label { font-family: var(--display); font-size: 0.8125rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--bronze); margin: 0 0 1rem; }
+  .foil { background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .wordmark {
+    display: inline-block; font-weight: 400; letter-spacing: 0.14em; padding-left: 0.14em;
+    background: linear-gradient(90deg, #E4C45C 0%, #C9A232 25%, #B8912A 50%, #DADADA 50%, #BDBDBD 75%, #A6A6A6 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  /* Ornament: rule, diamond, rule (gold left, silver right like the wordmark) */
+  .orn { display: flex; align-items: center; gap: 0.9rem; margin-block: clamp(2rem, 5vw, 3rem) 0; }
+  .orn::before, .orn::after { content: ""; flex: 1; height: 1px; }
+  .orn::before { background: linear-gradient(90deg, transparent, var(--gold)); }
+  .orn::after { background: linear-gradient(90deg, var(--silver), transparent); }
+  .orn i { width: 0.55rem; height: 0.55rem; transform: rotate(45deg); background: linear-gradient(90deg, var(--gold) 50%, var(--silver) 50%); }
+  .orn.short { max-width: 14rem; }
+  .orn.short.left { margin-inline: 0 auto; }
+
+  /* Gilt frame: thin gold line, white mat, corner marks */
+  .frame { position: relative; padding: clamp(0.5rem, 1.4vw, 0.9rem); border: 1px solid var(--gold); background: var(--paper); margin: 0; }
+  .frame::before, .frame::after { content: ""; position: absolute; width: 1.1rem; height: 1.1rem; border: 1px solid var(--gold); }
+  .frame::before { top: -0.45rem; left: -0.45rem; border-right: 0; border-bottom: 0; }
+  .frame::after { bottom: -0.45rem; right: -0.45rem; border-left: 0; border-top: 0; }
+  .frame img, .frame video { width: 100%; height: auto; display: block; }
+  @media (prefers-reduced-motion: reduce) { .frame video { display: none; } }
+  .on-night .frame { background: #000; border-color: var(--gold); }
+
+  /* Header */
+  .site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--paper); border-bottom: 1px solid var(--rule); }
+  .site-header .wrap { display: flex; align-items: center; gap: 1.5rem; min-height: 4.25rem; }
+  .site-header .wordmark { font-size: 1.375rem; text-decoration: none; }
+  .nav { flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav ul { list-style: none; display: flex; justify-content: flex-end; gap: 1.6rem; margin: 0; padding: 0; white-space: nowrap; }
+  .nav a { font-family: var(--display); font-size: 0.875rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); text-decoration: none; padding-block: 0.4rem; display: inline-block; }
+  .nav a:hover { color: var(--bronze); }
+  .lang { display: flex; border: 1px solid var(--rule); flex-shrink: 0; }
+  .lang button { font-family: var(--display); font-size: 0.8125rem; letter-spacing: 0.12em; background: none; border: 0; padding: 0.3em 0.75em; color: var(--muted); cursor: pointer; }
+  .lang button[aria-pressed="true"] { color: var(--paper); background: var(--ink); }
+  @media (max-width: 820px) {
+    .site-header .wrap { flex-wrap: wrap; gap: 0.25rem 1rem; padding-block: 0.7rem; }
+    .site-header .wordmark { margin-right: auto; }
+    .nav { order: 3; flex-basis: 100%; }
+    .nav ul { justify-content: flex-start; gap: 1.2rem; }
+  }
+
+  section { scroll-margin-top: 6rem; }
+  .band { padding-block: clamp(4rem, 9vw, 7rem); border-top: 1px solid var(--rule); }
+
+  /* Hero */
+  .hero { padding-block: clamp(3.5rem, 9vw, 6rem) clamp(3rem, 6vw, 4.5rem); text-align: center; }
+  .hero h1 { font-size: clamp(3.25rem, 13vw, 9rem); line-height: 1; }
+  .hero .tag { font-family: var(--display); font-size: clamp(1.125rem, 2.6vw, 1.625rem); letter-spacing: 0.12em; margin-top: 1.25rem; }
+  .hero .lead { font-size: clamp(1.1875rem, 2.1vw, 1.375rem); line-height: 1.55; max-width: 34em; margin: 1.25rem auto 0; color: var(--muted); }
+  .hero .orn { max-width: 30rem; margin-inline: auto; }
+  .hero figure.frame { margin-top: clamp(2.5rem, 5vw, 3.5rem); text-align: left; }
+  .hero figure img { aspect-ratio: 16 / 9; object-fit: cover; }
+  figcaption { margin-top: 0.75rem; font-size: 1rem; color: var(--muted); font-style: italic; }
+  figcaption b { font-style: normal; font-family: var(--display); font-weight: 400; font-size: 0.8125rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); margin-right: 0.4rem; }
+
+  /* Two houses */
+  .houses { display: grid; gap: 3rem; }
+  @media (min-width: 900px) { .houses { grid-template-columns: 1fr 1fr; gap: 5rem; } }
+  .house { display: flex; flex-direction: column; gap: 1rem; }
+  .house h2 { font-size: clamp(2.25rem, 5vw, 3.25rem); }
+  .house.art h2 { color: var(--muted); }
+  .house p { max-width: 32em; margin: 0; }
+  .house .orn { margin: 0; }
+
+  /* Section heads */
+  .head { margin-bottom: clamp(2.5rem, 5vw, 3.5rem); max-width: 44em; }
+  .head h2 { font-size: clamp(2rem, 4.6vw, 3rem); }
+  .head .sub { font-size: clamp(1.1875rem, 2.2vw, 1.375rem); color: var(--muted); margin-top: 0.9rem; }
+
+  /* Values */
+  .values-band { background: var(--stone); padding-block: clamp(3rem, 6vw, 4.5rem); }
+  .values { display: grid; gap: 2rem; }
+  @media (min-width: 560px) { .values { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .values { grid-template-columns: repeat(4, 1fr); gap: 2.5rem; } }
+  .values > div { border-top: 1px solid var(--gold); padding-top: 1.1rem; min-width: 0; }
+  .values h3 { font-size: 1.375rem; margin-bottom: 0.45rem; }
+  .values p { color: var(--muted); font-size: 1.0625rem; line-height: 1.5; }
+
+  /* Wall-art offer */
+  .offer { display: grid; gap: 2.5rem; }
+  @media (min-width: 860px) { .offer { grid-template-columns: repeat(3, 1fr); gap: 3rem; } }
+  .offer > div { border-top: 1px solid var(--gold); padding-top: 1.25rem; }
+  .offer h3 { font-size: 1.375rem; margin-bottom: 0.5rem; }
+  .offer p { color: var(--muted); }
+  .formats { margin-top: clamp(2.5rem, 5vw, 3.5rem); display: flex; flex-wrap: wrap; gap: 0.6rem 0; font-family: var(--display); font-size: 0.875rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); }
+  .formats span::before { content: "◆"; color: var(--gold); font-size: 0.55rem; vertical-align: 0.2em; margin-inline: 1rem; }
+  .formats span:nth-child(-n+2)::before { content: none; }
+  .services { display: grid; gap: 1.5rem; margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+  @media (min-width: 900px) { .services { grid-template-columns: 1fr 1fr; } }
+  .model-note { padding: clamp(1.25rem, 3vw, 1.75rem) clamp(1.25rem, 3vw, 2rem); border: 1px solid var(--gold); background: var(--stone); min-width: 0; }
+  .model-note h3 { font-size: 1.375rem; margin-bottom: 0.5rem; color: var(--bronze); }
+  .model-note p { color: var(--ink); }
+  .model-note h3 { font-size: clamp(1.375rem, 3vw, 1.75rem); }
+  .model-list { margin: 1rem 0 1.25rem; padding: 0; list-style: none; display: grid; gap: 0.5rem; }
+  .model-list li { padding-left: 1.4rem; position: relative; }
+  .model-list li::before { content: "◆"; position: absolute; left: 0; top: 0.1em; color: var(--gold); font-size: 0.6rem; line-height: 2; }
+  .for { margin-top: clamp(3rem, 6vw, 4.5rem); }
+  .for-grid { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .for-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .for-grid { grid-template-columns: repeat(4, 1fr); } }
+  .for-grid h3 { font-size: 1.3125rem; margin-bottom: 0.35rem; }
+  .for-grid p { color: var(--muted); font-size: 1.0625rem; line-height: 1.5; }
+
+  /* Gold Collection: the black room */
+  .on-night { background: var(--night); color: var(--night-ink); border-top: 0; }
+  .on-night .label { color: var(--gold); }
+  .on-night .head .sub, .on-night p { color: var(--night-muted); }
+  .on-night h2 { font-size: clamp(2.5rem, 6vw, 4rem); }
+  .on-night .orn::before { background: linear-gradient(90deg, transparent, var(--gold)); }
+  .gold-pair { display: grid; gap: clamp(2rem, 4vw, 3rem); }
+  @media (min-width: 900px) { .gold-pair { grid-template-columns: 7fr 5fr; align-items: end; } }
+  .on-night figcaption { color: var(--night-muted); }
+  .on-night figcaption b { color: var(--gold); }
+  .gold-rooms { display: grid; gap: clamp(1.5rem, 3vw, 2rem); margin-top: clamp(1.75rem, 3.5vw, 2.5rem); }
+  @media (min-width: 760px) { .gold-rooms { grid-template-columns: repeat(3, 1fr); } }
+  .gold-rooms img { aspect-ratio: 4 / 3; object-fit: cover; }
+  .gold-text { max-width: 36em; margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+  .gold-text p { color: var(--night-ink); }
+  .spec { display: grid; grid-template-columns: auto 1fr; gap: 0.55rem 1.5rem; margin: 1.75rem 0 0; padding-top: 1.25rem; border-top: 1px solid rgba(212, 175, 55, 0.4); }
+  .spec dt { font-family: var(--display); font-size: 0.8125rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); padding-top: 0.2rem; }
+  .spec dd { margin: 0; min-width: 0; color: var(--night-ink); }
+
+  /* Tower proposal renderings */
+  .renders { display: grid; gap: clamp(1.75rem, 3.5vw, 2.5rem); }
+  @media (min-width: 860px) { .renders { grid-template-columns: 1fr 1fr; } .renders .wide { grid-column: 1 / -1; } }
+  .kind-line { margin-top: 1.75rem; font-family: var(--display); font-size: 0.8125rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); }
+  .past-title { font-size: 1.5rem; margin: 2.5rem 0 1.5rem; }
+
+  /* Other projects */
+  .past { display: grid; gap: 2rem; }
+  @media (min-width: 760px) { .past { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+  .past article { border-top: 1px solid var(--rule); padding-top: 1.25rem; }
+  .past h3 { font-size: 1.375rem; margin: 0 0 0.25rem; }
+  .past .kind { font-family: var(--display); font-size: 0.8125rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); margin: 0 0 0.6rem; }
+  .past p { color: var(--muted); }
+
+  /* Codices Art */
+  .artists { display: grid; gap: 3rem; }
+  @media (min-width: 900px) { .artists { grid-template-columns: 7fr 5fr; gap: 4.5rem; } }
+  .artists h3 { font-size: 1.75rem; }
+  .artists .line { font-style: italic; color: var(--bronze); margin: 0.2rem 0 1rem; }
+  .artists .v .line { color: var(--muted); }
+  .thumbs { display: grid; grid-template-columns: 3fr 2fr; gap: 1.25rem; margin: 1.75rem 0; align-items: stretch; }
+  .thumbs .frame { padding: 0.45rem; display: flex; }
+  .thumbs img { object-fit: cover; height: 100%; max-height: 17rem; }
+  .colls { list-style: none; padding: 0; margin: 0 0 1.25rem; display: flex; flex-wrap: wrap; gap: 0.4rem 0; font-family: var(--display); font-size: 0.9375rem; letter-spacing: 0.12em; }
+  .colls li:not(:last-child)::after { content: "◆"; color: var(--gold); font-size: 0.5rem; vertical-align: 0.25em; margin-inline: 0.9rem; }
+  .colls li.soon { color: var(--muted); }
+  .artist-note { max-width: 40em; margin-bottom: clamp(2.5rem, 5vw, 3.5rem); padding-left: 1.5rem; border-left: 1px solid var(--gold); }
+  .artist-note h3 { font-size: 1.5rem; }
+  .artist-note .line { font-style: italic; color: var(--bronze); margin: 0.2rem 0 0.75rem; }
+  .artist-note p:last-child { color: var(--muted); }
+  .coll-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 1rem; }
+  @media (max-width: 480px) { .coll-cards { grid-template-columns: 1fr 1fr; } }
+  .coll-card { display: flex; flex-direction: column; gap: 0.5rem; text-decoration: none; color: var(--ink); min-width: 0; }
+  .coll-card .frame { padding: 0.4rem; display: block; }
+  .coll-card img { aspect-ratio: 1 / 1; object-fit: cover; width: 100%; }
+  .coll-card .cname { font-family: var(--display); font-size: 1.125rem; letter-spacing: 0.1em; }
+  .coll-card .ccount { font-size: 0.9375rem; color: var(--bronze); text-decoration: underline; text-underline-offset: 0.2em; }
+  .coll-card:hover .cname { color: var(--bronze); }
+  .soon-coll { color: var(--muted); font-style: italic; font-size: 1rem; }
+  .immersive { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--silver); }
+  .immersive h3 { font-size: 1.25rem; }
+
+  /* Coming soon */
+  .soon-band { background: var(--stone); }
+  .soon-grid { display: grid; gap: 2.5rem; }
+  @media (min-width: 860px) { .soon-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+  .soon-card { border: 1px dashed var(--silver); padding: clamp(1.25rem, 3vw, 2rem); background: var(--paper); }
+  .soon-card .tagline { font-family: var(--display); font-size: 0.75rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+  .soon-card h3 { font-size: 1.625rem; margin-bottom: 0.75rem; }
+  .soon-card p { color: var(--muted); }
+  .soon-note { margin-top: 2rem; font-style: italic; color: var(--muted); }
+
+  /* Process (a real sequence, numbered in Roman capitals) */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 2rem; counter-reset: step; }
+  @media (min-width: 560px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .steps { grid-template-columns: repeat(4, 1fr); gap: 2.5rem; } }
+  .steps li { counter-increment: step; border-top: 1px solid var(--gold); padding-top: 1.1rem; }
+  .steps li::before { content: counter(step, upper-roman); display: block; font-family: var(--display); font-size: 1.75rem; color: var(--bronze); line-height: 1; margin-bottom: 0.7rem; }
+  .steps h3 { font-size: 1.25rem; margin-bottom: 0.35rem; }
+  .steps p { color: var(--muted); font-size: 1.0625rem; }
+
+  /* Contact */
+  .contact { text-align: center; }
+  .contact h2 { font-size: clamp(2.125rem, 5vw, 3.25rem); }
+  .contact .sub { max-width: 34em; color: var(--muted); margin: 1rem auto 0; }
+  .channels { display: grid; gap: 1.25rem; margin: 2.25rem auto 0; max-width: 40rem; text-align: left; }
+  .channels { max-width: 24rem; }
+  .channel { border: 1px solid var(--gold); padding: 1.1rem 1.25rem; min-width: 0; }
+  .channel .k { font-family: var(--display); font-size: 0.8125rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bronze); }
+  .channel .v { font-size: 1.3125rem; user-select: all; overflow-wrap: anywhere; font-variant-numeric: lining-nums; }
+  .copy { font: inherit; font-size: 0.9375rem; color: var(--ink); background: none; border: 1px solid var(--rule); padding: 0.2em 0.9em; margin-top: 0.6rem; cursor: pointer; }
+  .copy:hover { border-color: var(--bronze); color: var(--bronze); }
+  .where { margin-top: 1.75rem; color: var(--muted); }
+
+  .site-footer { border-top: 1px solid var(--rule); padding-block: 2.5rem; }
+  .site-footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: baseline; justify-content: space-between; }
+  .site-footer .wordmark { font-size: 1.25rem; }
+  .site-footer p { margin: 0; color: var(--muted); font-family: var(--display); font-size: 0.8125rem; letter-spacing: 0.14em; }
+
+  /* Working notes: not part of the public site */
+  .notes { border-top: 2px dashed var(--silver); padding-block: 2.5rem 4rem; background: var(--stone); font-size: 1.0625rem; }
+  .notes summary { cursor: pointer; font-size: 1.25rem; }
+  .notes summary span { color: var(--muted); font-style: italic; font-size: 1rem; }
+  .notes h4 { font-weight: 500; font-size: 1.125rem; margin: 2rem 0 0.75rem; }
+  .log { overflow-x: auto; }
+  .log table { border-collapse: collapse; width: 100%; min-width: 40rem; font-size: 1rem; }
+  .log th, .log td { text-align: left; vertical-align: top; padding: 0.55rem 0.9rem 0.55rem 0; border-bottom: 1px solid var(--rule); }
+  .log th { font-weight: 500; color: var(--bronze); }
+  .log td:first-child { white-space: nowrap; font-variant-numeric: lining-nums tabular-nums; }
+  .notes ol { padding-left: 1.25rem; margin: 0; }
+  .notes li { margin-bottom: 0.4rem; }
+</style>
 
-    :root {
-      --gold: #D4AF37;
-      --bronze: #8B6914;
-      --dark: #1a1a1a;
-      --white: #ffffff;
-      --cream: #faf6f0;
-      --bg: #ffffff;
-      --text: #2a2a2a;
-    }
-
-    html, body {
-      font-family: Georgia, 'Times New Roman', serif;
-      line-height: 1.7;
-      color: var(--text);
-      background: var(--bg);
-    }
-
-    /* ===== HEADER & LOGO ===== */
-    header {
-      background: var(--bg);
-      padding: 2rem 0;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .logo-svg {
-      width: 160px;
-      height: 50px;
-    }
-
-    .tagline-sub {
-      font-size: 0.7rem;
-      color: var(--bronze);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-style: italic;
-      font-weight: 400;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2.5rem;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--text);
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: color 0.3s ease;
-      letter-spacing: 0.5px;
-    }
-
-    nav a:hover {
-      color: var(--gold);
-    }
-
-    /* ===== HERO SECTION ===== */
-    .hero {
-      min-height: 60vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 4rem 2rem;
-      background: var(--bg);
-      position: relative;
-    }
-
-    .hero h1 {
-      font-family: Georgia, serif;
-      font-size: 3.8rem;
-      font-weight: 400;
-      letter-spacing: 6px;
-      color: var(--gold);
-      margin-bottom: 0.8rem;
-      text-transform: uppercase;
-    }
-
-    .hero .tagline {
-      font-size: 1.1rem;
-      color: var(--bronze);
-      font-style: italic;
-      margin-bottom: 2rem;
-      font-weight: 300;
-      letter-spacing: 1px;
-      max-width: 700px;
-    }
-
-    .hero p {
-      font-size: 1rem;
-      color: var(--text);
-      margin-bottom: 2rem;
-      max-width: 700px;
-      line-height: 1.8;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 0.9rem 2.5rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      border: 2px solid var(--gold);
-      border-radius: 2px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-family: Georgia, serif;
-    }
-
-    .btn-primary {
-      background: var(--gold);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: #c49a27;
-      border-color: #c49a27;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--bronze);
-      border-color: var(--bronze);
-    }
-
-    .btn-secondary:hover {
-      background: var(--bronze);
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    /* ===== GILBERT SECTION ===== */
-    .artist-section {
-      max-width: 1100px;
-      margin: 6rem auto;
-      padding: 0 2rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .artist-image {
-      width: 100%;
-      height: 500px;
-      background: var(--cream);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--bronze);
-      font-style: italic;
-      font-size: 0.95rem;
-      overflow: hidden;
-    }
-
-    .artist-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .artist-content h2 {
-      font-family: Georgia, serif;
-      font-size: 2.2rem;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-      letter-spacing: 2px;
-      font-weight: 400;
-    }
-
-    .artist-credit {
-      font-size: 0.85rem;
-      color: var(--bronze);
-      font-style: italic;
-      margin-bottom: 1.5rem;
-    }
-
-    .artist-content p {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      margin-bottom: 1.2rem;
-      color: var(--text);
-    }
-
-    .artist-content strong {
-      color: var(--bronze);
-      font-weight: 600;
-    }
-
-    .philosophy-quote {
-      background: var(--cream);
-      padding: 2rem;
-      border-left: 3px solid var(--gold);
-      margin: 2rem 0;
-      font-size: 0.9rem;
-      line-height: 1.9;
-      font-style: italic;
-      color: var(--text);
-    }
-
-    .credentials {
-      background: var(--cream);
-      padding: 1.5rem;
-      border-left: 3px solid var(--gold);
-      margin: 1.5rem 0;
-      font-size: 0.9rem;
-      line-height: 1.8;
-    }
-
-    .credentials strong {
-      color: var(--gold);
-      display: block;
-      margin-bottom: 0.5rem;
-      font-size: 0.95rem;
-    }
-
-    /* ===== COLLECTIONS SECTION ===== */
-    .collections-section {
-      padding: 6rem 2rem;
-      background: var(--bg);
-    }
-
-    .collections-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      font-family: Georgia, serif;
-      font-size: 2.8rem;
-      color: var(--gold);
-      text-align: center;
-      margin-bottom: 1rem;
-      letter-spacing: 2px;
-      font-weight: 400;
-    }
-
-    .section-subtitle {
-      text-align: center;
-      font-size: 1rem;
-      color: var(--bronze);
-      font-style: italic;
-      margin-bottom: 3rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .collections-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
-      margin-top: 3rem;
-    }
-
-    .collection-card {
-      background: var(--white);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      border-radius: 2px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .collection-card:hover {
-      border-color: var(--gold);
-      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
-      transform: translateY(-4px);
-    }
-
-    .collection-image {
-      width: 100%;
-      height: 200px;
-      background: linear-gradient(135deg, var(--cream) 0%, #f0ebe5 100%);
-      border-bottom: 2px dashed var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--bronze);
-      font-size: 0.9rem;
-      font-style: italic;
-    }
-
-    .collection-content {
-      padding: 1.8rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .collection-label {
-      font-size: 0.8rem;
-      color: var(--bronze);
-      font-style: italic;
-      margin-bottom: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 600;
-    }
-
-    .collection-title {
-      font-family: Georgia, serif;
-      font-size: 1.4rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-    }
-
-    .collection-description {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin-bottom: 1rem;
-      flex: 1;
-      color: var(--text);
-    }
-
-    .collection-status {
-      font-size: 0.8rem;
-      color: var(--bronze);
-      font-style: italic;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-top: auto;
-    }
-
-    .coming-soon {
-      opacity: 0.65;
-    }
-
-    .coming-soon .collection-image {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
-    .coming-soon-badge {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--gold);
-    }
-
-    /* ===== MODAL ===== */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
-      overflow-y: auto;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .modal-content {
-      background: var(--white);
-      padding: 2rem;
-      border-radius: 2px;
-      max-width: 900px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      position: relative;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-      border-bottom: 2px solid var(--gold);
-      padding-bottom: 1rem;
-    }
-
-    .modal-header h2 {
-      font-family: Georgia, serif;
-      font-size: 1.8rem;
-      color: var(--gold);
-      letter-spacing: 1px;
-      font-weight: 400;
-    }
-
-    .close-btn {
-      font-size: 2rem;
-      cursor: pointer;
-      color: var(--bronze);
-      border: none;
-      background: none;
-      transition: color 0.3s ease;
-    }
-
-    .close-btn:hover {
-      color: var(--gold);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .gallery-item {
-      background: var(--cream);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      border-radius: 2px;
-      aspect-ratio: 1 / 0.7;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--bronze);
-      font-style: italic;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .gallery-item:hover {
-      border-color: var(--gold);
-      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .gallery-footer {
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--bronze);
-      font-style: italic;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(212, 175, 55, 0.15);
-    }
-
-    .gallery-title {
-      font-size: 0.8rem;
-      color: var(--text);
-      text-align: center;
-      font-weight: 500;
-      margin-top: 0.5rem;
-      line-height: 1.2;
-      min-height: 2.4em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* ===== CTA FINAL ===== */
-    .cta-final {
-      background: var(--cream);
-      padding: 4rem 2rem;
-      text-align: center;
-      border-top: 2px solid var(--gold);
-      margin-top: 6rem;
-    }
-
-    .cta-final h2 {
-      font-family: Georgia, serif;
-      font-size: 2rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      letter-spacing: 2px;
-      font-weight: 400;
-    }
-
-    .cta-final p {
-      font-size: 1rem;
-      color: var(--bronze);
-      margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: var(--dark);
-      color: white;
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-logo {
-      font-family: Georgia, serif;
-      font-size: 1.6rem;
-      letter-spacing: 3px;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-      text-transform: uppercase;
-      font-weight: 400;
-    }
-
-    .footer-contact {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      font-size: 0.9rem;
-    }
-
-    .footer-contact a {
-      color: var(--gold);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-contact a:hover {
-      color: white;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
-      padding-top: 1.5rem;
-      font-size: 0.8rem;
-      color: #999;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
-        letter-spacing: 3px;
-      }
-
-      .artist-section {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .artist-image {
-        height: 350px;
-      }
-
-      .artist-content h2 {
-        font-size: 1.6rem;
-      }
-
-      .section-title {
-        font-size: 2rem;
-      }
-
-      nav ul {
-        display: none;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .modal-content {
-        padding: 1.5rem;
-        max-height: 90vh;
-      }
-
-      .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 2rem;
-        letter-spacing: 2px;
-      }
-
-      .logo-svg {
-        width: 120px;
-        height: 40px;
-      }
-
-      .tagline-sub {
-        font-size: 0.65rem;
-      }
-
-      .section-title {
-        font-size: 1.6rem;
-      }
-
-      .modal-content {
-        padding: 1rem;
-      }
-
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .philosophy-quote {
-        padding: 1.5rem;
-        font-size: 0.85rem;
-      }
-    }
-  </style>
 </head>
 <body>
-
-<!-- HEADER -->
-<header>
-  <nav>
-    <div class="logo-container">
-      <svg class="logo-svg" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#E8D5B7;stop-opacity:1" />
-            <stop offset="50%" style="stop-color:#D4AF37;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
-          </linearGradient>
-          <linearGradient id="silverGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#F5F5F5;stop-opacity:1" />
-            <stop offset="50%" style="stop-color:#D3D3D3;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#A9A9A9;stop-opacity:1" />
-          </linearGradient>
-          <clipPath id="leftHalf">
-            <rect x="0" y="0" width="400" height="200" />
-          </clipPath>
-          <clipPath id="rightHalf">
-            <rect x="400" y="0" width="400" height="200" />
-          </clipPath>
-        </defs>
-        <rect width="800" height="200" fill="white"/>
-        <g clip-path="url(#leftHalf)">
-          <text x="400" y="145" font-family="Garamond, Georgia, serif" font-size="96" font-weight="300" text-anchor="middle" letter-spacing="4" fill="url(#goldGradient)" stroke="none">CODICES</text>
-        </g>
-        <g clip-path="url(#rightHalf)">
-          <text x="400" y="145" font-family="Garamond, Georgia, serif" font-size="96" font-weight="300" text-anchor="middle" letter-spacing="4" fill="url(#silverGradient)" stroke="none">CODICES</text>
-        </g>
-        <line x1="400" y1="90" x2="400" y2="160" stroke="#E0E0E0" stroke-width="1" opacity="0.3"/>
-      </svg>
-      <div class="tagline-sub">Zócalo Espiritual de las Américas</div>
+<header class="site-header">
+  <div class="wrap">
+    <a href="#inicio" class="wordmark" aria-label="Codices">CODICES</a>
+    <nav class="nav" aria-label="Principal">
+      <ul>
+        <li><a href="#decor">Decor</a></li>
+        <li><a href="#coleccion-oro"><span data-l="es">Colección Oro</span><span data-l="en">Gold Collection</span></a></li>
+        <li><a href="#art">Art</a></li>
+        <li><a href="#proximamente"><span data-l="es">Próximamente</span><span data-l="en">Coming soon</span></a></li>
+        <li><a href="#contacto"><span data-l="es">Contacto</span><span data-l="en">Contact</span></a></li>
+      </ul>
+    </nav>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" id="lang-es" data-set="es" aria-pressed="true">ES</button>
+      <button type="button" id="lang-en" data-set="en" aria-pressed="false">EN</button>
     </div>
-    <ul>
-      <li><a href="#artista">El Artista</a></li>
-      <li><a href="#colecciones">Colecciones</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-  </nav>
+  </div>
 </header>
 
-<!-- HERO SECTION -->
-<section class="hero">
-  <h1>Codices</h1>
-  <p class="tagline">Zócalo Espiritual de las Américas</p>
-  <p>Reinterpretación digital de sistemas de signos precolombinos. Instalaciones personalizadas para espacios residenciales y comerciales. Eventos inmersivos filosóficos.</p>
-  <div class="cta-buttons">
-    <a href="#colecciones" class="btn btn-primary">Explorar Colecciones</a>
-    <a href="#contacto" class="btn btn-secondary">Solicitar Propuesta</a>
-  </div>
-</section>
-
-<!-- GILBERT SECTION -->
-<section class="artist-section" id="artista">
-  <div class="artist-image">
-    <img src="gilbert_kieffer_painter.jpg" alt="Gilbert Kieffer">
-  </div>
-  <div class="artist-content">
-    <h2>Gilbert Kieffer</h2>
-    <p class="artist-credit">Artista-Filósofo, Arqueólogo del Espíritu</p>
-    
-    <p>En los años noventa, cuando la arqueología descartaba los signos precolombinos como artefactos mudos, Gilbert Kieffer escuchó lo que otros no podían oír: vibraciones espirituales guardadas en geometrías ancestrales. Durante treinta años, ha dedicado su práctica a una sola misión: <strong>restituir las vibraciones de los signos de las Américas de Norte a Sur, del mundo Sioux al mundo Inca.</strong></p>
-
-    <p>Los signos Nazca, Maya, Taíno no eran decoración. Eran oraciones—llamados de poder a la fortaleza del bosque, a la fertilidad de la tierra, a divinidades olvidadas. Pero hemos perdido la religión necesaria para leerlos. Kieffer no crea. Traduce. Restituye mediante el futurismo técnico lo que ya no podemos decodificar espiritualmente.</p>
-
-    <div class="philosophy-quote">
-      "La idea de la Arqueología del espíritu es, a fin de cuentas, buscar el espíritu de manera arqueológica. El artista las traduce de manera futurista, porque nuestro imaginario busca el futurismo técnico. La traducción futurista puede dar una potencia épica, inclusive mitológica, a lo que ya no entendemos. Ahora solo podemos restituir mediante el imaginario que busca dejar una impresión poética, emotiva, buscando guardar las vibraciones a la altura de estos signos."
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <p class="label">Codices Decor · Codices Art</p>
+      <h1><span class="wordmark">CODICES</span></h1>
+      <p class="tag foil" data-l="es">Cada muro, una historia</p>
+      <p class="tag foil" data-l="en">Every wall, a story</p>
+      <p class="lead" data-l="es">Decoración y arte para departamentos, casas, torres y hoteles en Latinoamérica: colecciones impresas en canvas a la medida de cada muro, y la decoración completa del espacio.</p>
+      <p class="lead" data-l="en">Decoration and art for apartments, houses, towers and hotels across Latin America: collections printed on canvas to the size of each wall, and the complete decoration of the space.</p>
+      <div class="orn" aria-hidden="true"><i></i></div>
+      <figure class="frame">
+        <img src="images/abstraccion-volumetrica-ii-sofa.jpg" width="1600" height="900" alt="Obra dorada en espiral, Abstracción Volumétrica II de Vivianne Kieffer, en marco de madera sobre un sofá capitoné beige.">
+        <figcaption data-l="es"><b>Colección Oro</b>Abstracción Volumétrica II, de Vivianne Kieffer. Departamento privado decorado por Codices, 2026.</figcaption>
+        <figcaption data-l="en"><b>Gold Collection</b>Volumetric Abstraction II, by Vivianne Kieffer. Private apartment decorated by Codices, 2026.</figcaption>
+      </figure>
     </div>
+  </section>
 
-    <div class="credentials">
-      <strong>Resonancia Institucional</strong>
-      Retrospectiva, Museo de la Nación, Lima (1999) • Museo de Casas Reales, Santo Domingo (2014) • Mitología Nazca, Museo de Arte Moderno, Santo Domingo • Palmes Académiques, Francia (2006)
+  <!-- TWO HOUSES -->
+  <section class="band" aria-label="Codices Decor, Codices Art">
+    <div class="wrap houses">
+      <div class="house decor">
+        <p class="label">Vivianne Kieffer</p>
+        <h2 class="foil">Codices Decor</h2>
+        <div class="orn short left" aria-hidden="true"><i></i></div>
+        <p data-l="es">Las obras de Vivianne Kieffer y su Abstracción Volumétrica, empezando por la Colección Oro, impresas en canvas y producidas a la escala de cada muro. También decoramos departamentos completos alrededor de una colección. Para desarrolladores, hoteles, propietarios e inversores que quieren espacios con identidad.</p>
+        <p data-l="en">The works of Vivianne Kieffer and her Volumetric Abstraction, starting with the Gold Collection, printed on canvas and produced to the scale of each wall. We also decorate complete apartments around a collection. For developers, hotels, owners and investors who want spaces with an identity.</p>
+        <p><a href="#decor"><span data-l="es">Ver Codices Decor</span><span data-l="en">See Codices Decor</span></a></p>
+      </div>
+      <div class="house art">
+        <p class="label">Gilbert Kieffer</p>
+        <h2>Codices Art</h2>
+        <div class="orn short left" aria-hidden="true"><i></i></div>
+        <p data-l="es">Las obras de Gilbert Kieffer: los signos de las Américas traducidos a un lenguaje contemporáneo, en ediciones limitadas para lobbies, rooftops y residencias.</p>
+        <p data-l="en">The works of Gilbert Kieffer: the signs of the Americas translated into a contemporary language, in limited editions for lobbies, rooftops and residences.</p>
+        <p><a href="#art"><span data-l="es">Ver Codices Art</span><span data-l="en">See Codices Art</span></a></p>
+      </div>
     </div>
+  </section>
 
-    <p>Su obra vive en el espacio entre el museo y la arquitectura—en los espacios donde las vibraciones ancestrales son ancladas en espacios contemporáneos de lujo, donde el futuro reconoce al pasado, donde el espíritu levita en precisión técnica.</p>
-  </div>
-</section>
-
-<!-- COLLECTIONS SECTION -->
-<section class="collections-section" id="colecciones">
-  <div class="collections-container">
-    <svg class="section-logo" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" style="width: 220px; height: 70px; margin: 0 auto 1.5rem; display: block;">
-      <defs>
-        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:#E8D5B7;stop-opacity:1" />
-          <stop offset="50%" style="stop-color:#D4AF37;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
-        </linearGradient>
-        <linearGradient id="silverGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:#F5F5F5;stop-opacity:1" />
-          <stop offset="50%" style="stop-color:#D3D3D3;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#A9A9A9;stop-opacity:1" />
-        </linearGradient>
-        <clipPath id="leftHalf">
-          <rect x="0" y="0" width="400" height="200" />
-        </clipPath>
-        <clipPath id="rightHalf">
-          <rect x="400" y="0" width="400" height="200" />
-        </clipPath>
-      </defs>
-      <rect width="800" height="200" fill="white"/>
-      <g clip-path="url(#leftHalf)">
-        <text x="400" y="145" font-family="Garamond, Georgia, serif" font-size="96" font-weight="300" text-anchor="middle" letter-spacing="4" fill="url(#goldGradient)" stroke="none">CODICES</text>
-      </g>
-      <g clip-path="url(#rightHalf)">
-        <text x="400" y="145" font-family="Garamond, Georgia, serif" font-size="96" font-weight="300" text-anchor="middle" letter-spacing="4" fill="url(#silverGradient)" stroke="none">CODICES</text>
-      </g>
-      <line x1="400" y1="90" x2="400" y2="160" stroke="#E0E0E0" stroke-width="1" opacity="0.3"/>
-    </svg>
-    <p class="section-subtitle" style="margin-top: 0; margin-bottom: 3rem;">Colecciones de arte digital basadas en sistemas de signos precolombinos. Haz clic para explorar galerías.</p>
-    
-    <div class="collections-grid">
-      <!-- MAYA -->
-      <div class="collection-card" onclick="openGallery('maya')">
-        <div class="collection-image">[COLECCIÓN: Maya]</div>
-        <div class="collection-content">
-          <p class="collection-label">MAYA</p>
-          <h3 class="collection-title">Cosmología Maya</h3>
-          <p class="collection-description">Orden cosmológico. Estructuras que conectan tierra, cielo e inframundo. El Árbol de la Vida como eje central. Disponible en múltiples escalas y soportes para espacios residenciales y comerciales.</p>
-          <p class="collection-status">Canvas Digital | Plexi | Ediciones Limitadas</p>
+  <!-- VALUES -->
+  <section class="band values-band" aria-label="El estilo Codices">
+    <div class="wrap">
+      <p class="label"><span data-l="es">El estilo Codices</span><span data-l="en">The Codices style</span></p>
+      <div class="values">
+        <div>
+          <h3 class="d"><span data-l="es">Elegancia</span><span data-l="en">Elegance</span></h3>
+          <p data-l="es">Piezas sobrias y ambientes cuidados, con el oro y la madera como hilo conductor.</p>
+          <p data-l="en">Understated pieces and considered rooms, with gold and wood as the common thread.</p>
         </div>
-      </div>
-
-      <!-- TAÍNO -->
-      <div class="collection-card" onclick="openGallery('taino')">
-        <div class="collection-image">[COLECCIÓN: Taíno]</div>
-        <div class="collection-content">
-          <p class="collection-label">TAÍNO</p>
-          <h3 class="collection-title">Pictografías Taínas</h3>
-          <p class="collection-description">Sistemas de signos que representaban deidades y la vida cotidiana. Símbolos enraizados en cosmología espiritual y en la experiencia ancestral. Gilbert Kieffer reinterpreta estas pictografías en lenguaje digital contemporáneo, restituyen do vibraciones olvidadas de una civilización del Caribe.</p>
-          <p class="collection-status">Canvas Digital | Escala a Medida | Ediciones Limitadas</p>
+        <div>
+          <h3 class="d"><span data-l="es">Atemporalidad</span><span data-l="en">Timelessness</span></h3>
+          <p data-l="es">Obras y decoración que no siguen la moda del año: el espacio se ve bien hoy y dentro de muchos años.</p>
+          <p data-l="en">Art and decoration that don’t follow this year’s trend: the space looks right today and for years to come.</p>
         </div>
-      </div>
-
-      <!-- NAZCA -->
-      <div class="collection-card" onclick="openGallery('nazca')">
-        <div class="collection-image">[COLECCIÓN: Nazca]</div>
-        <div class="collection-content">
-          <p class="collection-label">NAZCA</p>
-          <h3 class="collection-title">Líneas Celestes</h3>
-          <p class="collection-description">Patrones geométricos diseñados como marcadores astronómicos que señalan donde el sol y los cuerpos celestes ascienden en fechas significativas. El Colibrí, el Árbol, las figuras zoomórficas—un mapa vivo de la bóveda celeste. Kieffer restaura estas líneas invisibles en el imaginario futurista.</p>
-          <p class="collection-status">Canvas Digital | Plexi | Ediciones Limitadas</p>
+        <div>
+          <h3 class="d"><span data-l="es">Practicidad</span><span data-l="en">Practicality</span></h3>
+          <p data-l="es">Materiales resistentes y ambientes fáciles de vivir, mantener y alquilar.</p>
+          <p data-l="en">Durable materials and rooms that are easy to live in, maintain and rent out.</p>
         </div>
-      </div>
-
-      <!-- ÑANDUTÍ (Coming Soon) -->
-      <div class="collection-card coming-soon">
-        <div class="collection-image">
-          <div class="coming-soon-badge">PRÓXIMAMENTE</div>
-          <div style="font-size: 0.85rem; color: var(--bronze); font-style: italic;">Ñandutí Paraguayo</div>
-        </div>
-        <div class="collection-content">
-          <p class="collection-label">ÑANDUTÍ</p>
-          <h3 class="collection-title">Encaje Ancestral</h3>
-          <p class="collection-description">Recuperación de la tradición textil paraguaya. El ñandutí como sistema de signos visuales tejidos. Símbolos que han perdurado en la memoria colectiva. Kieffer trasforma estos patrones en arte digital, restituyen do vibraciones ancestrales del Cono Sur.</p>
-          <p class="collection-status">En Desarrollo | 2024</p>
+        <div>
+          <h3 class="d"><span data-l="es">Presupuesto</span><span data-l="en">Budget</span></h3>
+          <p data-l="es">Una propuesta clara desde el inicio, ajustada al presupuesto de cada proyecto.</p>
+          <p data-l="en">A clear proposal from the start, tailored to each project’s budget.</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- MODALS FOR GALLERIES -->
-<div id="mayaModal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Cosmología Maya</h2>
-      <button class="close-btn" onclick="closeGallery('maya')">&times;</button>
-    </div>
-    <div class="gallery-grid">
-      <div>
-        <div class="gallery-item"><img src="images/MAYA/imagen_maya_1.jpg" alt="Cosmología Maya 1"></div>
-        <p class="gallery-title">Árbol de la Vida Maya y Barca Taína</p>
+  <!-- DECOR: WALL ART -->
+  <section class="band" id="decor">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">Codices Decor</p>
+        <h2 data-l="es">Arte para los muros</h2>
+        <h2 data-l="en">Art for the walls</h2>
+        <p class="sub" data-l="es">Obras de Vivianne Kieffer para vestir los muros. Elegimos la colección, definimos las medidas de cada muro y te mostramos las obras en tu espacio antes de producirlas.</p>
+        <p class="sub" data-l="en">Works by Vivianne Kieffer to dress the walls. We choose the collection, set the dimensions for each wall and show you the works in your space before they are produced.</p>
       </div>
-      <div>
-        <div class="gallery-item"><img src="images/MAYA/imagen_maya_2.jpg" alt="Cosmología Maya 2"></div>
-        <p class="gallery-title">Maya Sign I</p>
+      <div class="artist-note">
+        <h3 class="d">Vivianne Kieffer</h3>
+        <p class="line" data-l="es">Abstracción Volumétrica</p>
+        <p class="line" data-l="en">Volumetric Abstraction</p>
+        <p data-l="es">Donde su padre lee signos, Vivianne Kieffer trabaja la forma: volumen, luz y profundidad de la superficie, en obras pensadas para dialogar con la arquitectura que las recibe. La Colección Oro es la primera serie de su Abstracción Volumétrica.</p>
+        <p data-l="en">Where her father reads signs, Vivianne Kieffer works with form: volume, light and the depth of a surface, in works made to converse with the architecture that holds them. The Gold Collection is the first series of her Volumetric Abstraction.</p>
       </div>
-      <div>
-        <div class="gallery-item"><img src="images/MAYA/imagen_maya_3.jpg" alt="Cosmología Maya 3"></div>
-        <p class="gallery-title">Maya Taíno II</p>
+      <div class="offer">
+        <div>
+          <h3 class="d"><span data-l="es">Colecciones</span><span data-l="en">Collections</span></h3>
+          <p data-l="es">Las series de Abstracción Volumétrica, empezando por la Colección Oro, listas para combinar en un mismo proyecto.</p>
+          <p data-l="en">The Volumetric Abstraction series, starting with the Gold Collection, ready to combine within one project.</p>
+        </div>
+        <div>
+          <h3 class="d"><span data-l="es">A la medida</span><span data-l="en">Made to measure</span></h3>
+          <p data-l="es">Cada obra se imprime en canvas al tamaño del muro, del departamento modelo al lobby de una torre.</p>
+          <p data-l="en">Each work is printed on canvas to the size of the wall, from a show apartment to a tower lobby.</p>
+        </div>
+        <div>
+          <h3 class="d"><span data-l="es">Visualización previa</span><span data-l="en">Preview first</span></h3>
+          <p data-l="es">Antes de producir, ves las obras montadas en tus propios planos o fotos.</p>
+          <p data-l="en">Before production, you see the works hung on your own plans or photos.</p>
+        </div>
       </div>
-      <div>
-        <div class="gallery-item"><img src="images/MAYA/imagen_maya_4.jpg" alt="Cosmología Maya 4"></div>
-        <p class="gallery-title">Mayan Prophecy I</p>
+      <p class="formats">
+        <span data-l="es">Impresión en canvas</span><span data-l="en">Canvas print</span>
+        <span data-l="es">Marco flotante</span><span data-l="en">Floating frame</span>
+        <span data-l="es">Escala a medida</span><span data-l="en">Custom scale</span>
+        <span data-l="es">Ediciones limitadas</span><span data-l="en">Limited editions</span>
+      </p>
+      <div class="services">
+      <div class="model-note" id="decoracion-completa">
+        <p class="label"><span data-l="es">Llave en mano</span><span data-l="en">Turnkey</span></p>
+        <h3 class="d"><span data-l="es">Decoración completa de departamentos</span><span data-l="en">Full apartment decoration</span></h3>
+        <p data-l="es">Vestimos el departamento entero alrededor de una colección Codices, como en el proyecto de la Colección Oro.</p>
+        <p data-l="en">We dress the whole apartment around a Codices collection, as in the Gold Collection project.</p>
+        <ul class="model-list">
+          <li data-l="es">Concepto y paleta a partir de la colección elegida.</li>
+          <li data-l="en">A concept and palette built from the chosen collection.</li>
+          <li data-l="es">Mobiliario, iluminación y textiles para cada ambiente.</li>
+          <li data-l="en">Furniture, lighting and textiles for every room.</li>
+          <li data-l="es">Arte en canvas a medida, compras, entrega e instalación hasta dejarlo listo para vivir o alquilar.</li>
+          <li data-l="en">Made-to-measure canvas art, sourcing, delivery and installation until it is ready to live in or rent.</li>
+        </ul>
+        <p><a href="#coleccion-oro"><span data-l="es">Ver el proyecto Colección Oro</span><span data-l="en">See the Gold Collection project</span></a></p>
       </div>
-      <div>
-        <div class="gallery-item"><img src="images/MAYA/imagen_maya_5.jpg" alt="Cosmología Maya 5"></div>
-        <p class="gallery-title">Mayan Prophecy Tree of Life</p>
+      <div class="model-note" id="departamentos-modelo">
+        <p class="label"><span data-l="es">Para desarrolladores</span><span data-l="en">For developers</span></p>
+        <h3 class="d"><span data-l="es">Servicio para departamentos modelo</span><span data-l="en">Show apartment service</span></h3>
+        <p data-l="es">Vestimos con arte los departamentos modelo de torres en preventa, para que la unidad se venda desde la primera visita.</p>
+        <p data-l="en">We dress the show apartments of towers on pre-sale with art, so the unit sells from the very first viewing.</p>
+        <ul class="model-list">
+          <li data-l="es">Selección de obras para cada ambiente: sala, comedor y dormitorios.</li>
+          <li data-l="en">A selection of works for each room: living, dining and bedrooms.</li>
+          <li data-l="es">Visualización sobre los planos o renders de la torre antes de producir.</li>
+          <li data-l="en">A visualisation on the tower's plans or renderings before production.</li>
+          <li data-l="es">Impresión en canvas a medida, enmarcado e instalación antes de abrir la sala de ventas.</li>
+          <li data-l="en">Made-to-measure canvas printing, framing and installation before the sales suite opens.</li>
+        </ul>
+        <p><a href="#contacto"><span data-l="es">Pedir una propuesta para tu torre</span><span data-l="en">Request a proposal for your tower</span></a></p>
       </div>
-    </div>
-    <div class="gallery-footer">Canvas Digital | Escala a Medida | Ediciones Limitadas</div>
-    <p style="text-align: center; font-size: 0.85rem; color: var(--text); margin-top: 1.5rem; line-height: 1.6; font-style: italic;">Esta es una pequeña muestra de la colección. Contacta con nosotros para explorar opciones personalizadas según tus necesidades específicas.</p>
-  </div>
-</div>
+      </div>
 
-<div id="tainoModal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Pictografías Taínas</h2>
-      <button class="close-btn" onclick="closeGallery('taino')">&times;</button>
-    </div>
-    <div class="gallery-grid">
-      <div>
-        <div class="gallery-item"><img src="images/TAINO/imagen_taino_1.jpg" alt="Pictografías Taínas 1"></div>
-        <p class="gallery-title">Árbol de la Vida Maya y Barca Taína</p>
-      </div>
-      <div>
-        <div class="gallery-item"><img src="images/TAINO/imagen_taino_2.jpg" alt="Pictografías Taínas 2"></div>
-        <p class="gallery-title">Fish Small Taíno</p>
-      </div>
-      <div>
-        <div class="gallery-item"><img src="images/TAINO/imagen_taino_3.jpg" alt="Pictografías Taínas 3"></div>
-        <p class="gallery-title">Maya Taíno II</p>
-      </div>
-      <div>
-        <div class="gallery-item"><img src="images/TAINO/imagen_taino_4.jpg" alt="Pictografías Taínas 4"></div>
-        <p class="gallery-title">Taíno Boat Floating Sign I</p>
-      </div>
-      <div>
-        <div class="gallery-item"><img src="images/TAINO/imagen_taino_5.jpg" alt="Pictografías Taínas 5"></div>
-        <p class="gallery-title">Taíno Nota Música I</p>
-      </div>
-      <div>
-        <div class="gallery-item"><img src="images/TAINO/imagen_taino_6.jpg" alt="Pictografías Taínas 6"></div>
-        <p class="gallery-title">Taíno Signs Little Fellow I</p>
-      </div>
-      <div>
-        <div class="gallery-item"><img src="images/TAINO/imagen_taino_7.jpg" alt="Pictografías Taínas 7"></div>
-        <p class="gallery-title">Taíno Zemi II</p>
+      <div class="for">
+        <p class="label"><span data-l="es">Para quién</span><span data-l="en">Who it is for</span></p>
+        <div class="for-grid">
+          <div>
+            <h3 class="d"><span data-l="es">Torres</span><span data-l="en">Towers</span></h3>
+            <p data-l="es">Departamentos modelo, lobby, rooftop y áreas comunes.</p>
+            <p data-l="en">Show apartments, lobby, rooftop and common areas.</p>
+          </div>
+          <div>
+            <h3 class="d"><span data-l="es">Hoteles</span><span data-l="en">Hotels</span></h3>
+            <p data-l="es">Habitaciones, pasillos, lobby y restaurante.</p>
+            <p data-l="en">Rooms, corridors, lobby and restaurant.</p>
+          </div>
+          <div>
+            <h3 class="d"><span data-l="es">Inversores</span><span data-l="en">Investors</span></h3>
+            <p data-l="es">Departamentos para alquilar por estadías cortas o medianas.</p>
+            <p data-l="en">Apartments for short and medium-stay rental.</p>
+          </div>
+          <div>
+            <h3 class="d"><span data-l="es">Residencias</span><span data-l="en">Homes</span></h3>
+            <p data-l="es">Casas y departamentos privados.</p>
+            <p data-l="en">Private houses and apartments.</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="gallery-footer">Canvas Digital | Escala a Medida | Ediciones Limitadas</div>
-    <p style="text-align: center; font-size: 0.85rem; color: var(--text); margin-top: 1.5rem; line-height: 1.6; font-style: italic;">Esta es una pequeña muestra de la colección. Contacta con nosotros para explorar opciones personalizadas según tus necesidades específicas.</p>
-  </div>
-</div>
+  </section>
 
-<div id="nazcaModal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Líneas Celestes</h2>
-      <button class="close-btn" onclick="closeGallery('nazca')">&times;</button>
+  <!-- GOLD COLLECTION: THE BLACK ROOM -->
+  <section class="band on-night" id="coleccion-oro">
+    <div class="wrap">
+      <div class="head">
+        <p class="label"><span data-l="es">Proyecto reciente · Decoración completa</span><span data-l="en">Latest project · Full decoration</span></p>
+        <h2 class="foil" data-l="es">Colección Oro</h2>
+        <h2 class="foil" data-l="en">Gold Collection</h2>
+        <p class="sub" data-l="es">Codices decoró este departamento privado de punta a punta, con la Abstracción Volumétrica de Vivianne Kieffer como eje.</p>
+        <p class="sub" data-l="en">Codices decorated this private apartment from end to end, built around Vivianne Kieffer’s Volumetric Abstraction.</p>
+      </div>
+      <div class="gold-pair">
+        <figure class="frame">
+          <video src="images/abstraccion-volumetrica-vii-mesa.mp4" autoplay muted loop playsinline width="848" height="478" aria-label="Video corto del comedor: mesa puesta para seis bajo la obra Abstracción Volumétrica VII."></video>
+          <figcaption data-l="es"><b>Comedor</b>La mesa puesta para seis bajo Abstracción Volumétrica VII.</figcaption>
+          <figcaption data-l="en"><b>Dining room</b>The table set for six under Volumetric Abstraction VII.</figcaption>
+        </figure>
+        <figure class="frame">
+          <img src="images/abstraccion-volumetrica-vii-mesa.jpg" width="900" height="1600" style="aspect-ratio:4/5;object-fit:cover;object-position:50% 15%" alt="Abstracción Volumétrica VII, figura dorada sobre fondo negro, en marco de madera sobre la mesa del comedor con servilletas doradas.">
+          <figcaption data-l="es"><b>Abstracción Volumétrica VII</b>Oro sobre negro, en diálogo con la mesa.</figcaption>
+          <figcaption data-l="en"><b>Volumetric Abstraction VII</b>Gold on black, in dialogue with the table.</figcaption>
+        </figure>
+      </div>
+      <div class="gold-rooms">
+        <figure class="frame">
+          <img src="images/coleccion-oro-dormitorio-1.jpg" width="1280" height="960" alt="Dormitorio principal con cama tapizada, mesas de luz con lámparas y cortinas de lino frente al ventanal.">
+          <figcaption data-l="es"><b>Dormitorio principal</b>Cabecero tapizado, lámparas cálidas y lino.</figcaption>
+          <figcaption data-l="en"><b>Main bedroom</b>Upholstered headboard, warm lamps and linen.</figcaption>
+        </figure>
+        <figure class="frame">
+          <img src="images/coleccion-oro-dormitorio-2.jpg" width="1280" height="960" alt="Segundo dormitorio con banco a los pies de la cama, cojines y mesa de luz con lámpara.">
+          <figcaption data-l="es"><b>Segundo dormitorio</b>Banco, cojines y la misma paleta.</figcaption>
+          <figcaption data-l="en"><b>Second bedroom</b>A bench, cushions and the same palette.</figcaption>
+        </figure>
+        <figure class="frame">
+          <img src="images/coleccion-oro-sala.jpg" width="1280" height="960" alt="Sala con sofá esquinero beige, mesa de centro de madera y la obra en espiral sobre el muro.">
+          <figcaption data-l="es"><b>Sala</b>Mobiliario y obra en un mismo tono.</figcaption>
+          <figcaption data-l="en"><b>Living room</b>Furniture and art in one tone.</figcaption>
+        </figure>
+      </div>
+      <div class="gold-text">
+        <p data-l="es">Codices eligió el mobiliario, la iluminación, los textiles y la mesa puesta, y produjo las obras: oro sobre fondo negro, impresas en canvas y montadas en marco flotante de madera clara que retoma el tono de los pisos.</p>
+        <p data-l="en">Codices chose the furniture, lighting, textiles and table setting, and produced the art: gold on a black ground, printed on canvas and set in light-wood floating frames that pick up the tone of the floors.</p>
+        <p data-l="es">La Colección Oro también está disponible para departamentos modelo.</p>
+        <p data-l="en">The Gold Collection is also available for show apartments.</p>
+        <dl class="spec">
+          <dt><span data-l="es">Espacio</span><span data-l="en">Space</span></dt>
+          <dd><span data-l="es">Departamento privado, torre residencial</span><span data-l="en">Private apartment, residential tower</span></dd>
+          <dt><span data-l="es">Alcance</span><span data-l="en">Scope</span></dt>
+          <dd><span data-l="es">Decoración completa: mobiliario, iluminación, textiles, mesa y arte</span><span data-l="en">Full decoration: furniture, lighting, textiles, table and art</span></dd>
+          <dt><span data-l="es">Formato</span><span data-l="en">Format</span></dt>
+          <dd><span data-l="es">Impresión en canvas, marco flotante</span><span data-l="en">Canvas print, floating frame</span></dd>
+          <dt><span data-l="es">Año</span><span data-l="en">Year</span></dt>
+          <dd>2026</dd>
+        </dl>
+      </div>
     </div>
-    <div class="gallery-grid">
-      <div>
-        <div class="gallery-item"><img src="images/NAZCA/imagen_nazca_1.jpg" alt="Líneas Celestes 1"></div>
-        <p class="gallery-title">Colibri Purple</p>
-      </div>
-      <div>
-        <div class="gallery-item"><img src="images/NAZCA/imagen_nazca_2.jpg" alt="Líneas Celestes 2"></div>
-        <p class="gallery-title">Nazca Digital Mythology IV</p>
-      </div>
-      <div>
-        <div class="gallery-item"><img src="images/NAZCA/imagen_nazca_3.jpg" alt="Líneas Celestes 3"></div>
-        <p class="gallery-title">Nazca Spider I</p>
-      </div>
-      <div>
-        <div class="gallery-item"><img src="images/NAZCA/imagen_nazca_4.jpg" alt="Líneas Celestes 4"></div>
-        <p class="gallery-title">Nazca Stone II</p>
-      </div>
-    </div>
-    <div class="gallery-footer">Canvas Digital | Escala a Medida | Ediciones Limitadas</div>
-    <p style="text-align: center; font-size: 0.85rem; color: var(--text); margin-top: 1.5rem; line-height: 1.6; font-style: italic;">Esta es una pequeña muestra de la colección. Contacta con nosotros para explorar opciones personalizadas según tus necesidades específicas.</p>
-  </div>
-</div>
+  </section>
 
-<!-- CTA FINAL -->
-<section class="cta-final" id="contacto">
-  <h2>¿Interesado en una Instalación?</h2>
-  <p>Trabajamos con desarrolladores, arquitectos y diseñadores para crear instalaciones de arte digital que anclen la identidad de espacios comerciales y residenciales de lujo.</p>
-  <div class="cta-buttons">
-    <a href="mailto:info@codices.lat" class="btn btn-primary">Solicitar Propuesta</a>
-    <a href="https://api.whatsapp.com/send?phone=595976194641&text=Hola%20Codices%2C%20estoy%20interesado%20en%20una%20instalaci%C3%B3n" class="btn btn-secondary">WhatsApp</a>
-  </div>
-</section>
+  <!-- CODICES ART -->
+  <section class="band" id="art">
+    <div class="wrap">
+      <div class="head">
+        <p class="label">Codices Art</p>
+        <h2 data-l="es">Las obras de Gilbert Kieffer</h2>
+        <h2 data-l="en">The works of Gilbert Kieffer</h2>
+        <p class="sub" data-l="es">El arte que dio origen a Codices, en ediciones limitadas para proyectos que buscan una obra única.</p>
+        <p class="sub" data-l="en">The art that gave rise to Codices, in limited editions for projects that want a one-of-a-kind work.</p>
+      </div>
+      <div class="artists">
+        <div>
+          <h3 class="d">Gilbert Kieffer</h3>
+          <p class="line" data-l="es">Zócalo Espiritual de las Américas</p>
+          <p class="line" data-l="en">Spiritual Foundation of the Americas</p>
+          <p data-l="es">Doctor en filosofía, Gilbert Kieffer traduce los signos precolombinos a un lenguaje contemporáneo para que vuelvan a hablar en los espacios que habitamos. Retrospectivas en el Museo de la Nación de Lima (1999) y el Museo de las Casas Reales de Santo Domingo (2014).</p>
+          <p data-l="en">A doctor of philosophy, Gilbert Kieffer translates pre-Columbian signs into a contemporary language so they can speak again in the spaces we live in. Retrospectives at the Museo de la Nación, Lima (1999) and the Museo de las Casas Reales, Santo Domingo (2014).</p>
+          <p class="label" style="margin-top:1.75rem"><span data-l="es">Las colecciones</span><span data-l="en">The collections</span></p>
+          <div class="coll-cards">
+            <a class="coll-card" href="maya.html">
+              <span class="frame"><img src="images/colecciones/maya/maya-01.jpg" width="1417" height="992" alt="" loading="lazy"></span>
+              <span class="cname">Maya</span>
+              <span class="ccount"><span data-l="es">5 obras · Ver galería</span><span data-l="en">5 works · View gallery</span></span>
+            </a>
+            <a class="coll-card" href="taino.html">
+              <span class="frame"><img src="images/colecciones/taino/taino-01.jpg" width="400" height="545" alt="" loading="lazy"></span>
+              <span class="cname">Taíno</span>
+              <span class="ccount"><span data-l="es">7 obras · Ver galería</span><span data-l="en">7 works · View gallery</span></span>
+            </a>
+            <a class="coll-card" href="nazca.html">
+              <span class="frame"><img src="images/colecciones/nazca/nazca-01.jpg" width="709" height="529" alt="" loading="lazy"></span>
+              <span class="cname">Nazca</span>
+              <span class="ccount"><span data-l="es">4 obras · Ver galería</span><span data-l="en">4 works · View gallery</span></span>
+            </a>
+          </div>
+          <p class="soon-coll"><span data-l="es">Ñandutí, los signos del tejido paraguayo · próximamente</span><span data-l="en">Ñandutí, the signs of Paraguayan lace · coming soon</span></p>
+          <p><a href="https://gilbertkieffer.com" target="_blank" rel="noopener"><span data-l="es">Obra completa en gilbertkieffer.com</span><span data-l="en">Full body of work at gilbertkieffer.com</span></a></p>
+        </div>
+        <div class="v">
+          <div class="immersive" style="margin-top:0">
+            <h3 class="d"><span data-l="es">Para torres y hoteles</span><span data-l="en">For towers and hotels</span></h3>
+            <p data-l="es">Obras de gran formato para lobbies, rooftops y áreas comunes, que le dan al edificio una historia propia ligada a las Américas.</p>
+            <p data-l="en">Large-format works for lobbies, rooftops and common areas, giving a building its own story rooted in the Americas.</p>
+          </div>
+          <div class="immersive">
+            <h3 class="d"><span data-l="es">Experiencias inmersivas</span><span data-l="en">Immersive experiences</span></h3>
+            <p data-l="es">Para lanzamientos y eventos: proyecciones en 3D y encuentros guiados por la filosofía de la obra.</p>
+            <p data-l="en">For launches and events: 3D projections and gatherings guided by the philosophy behind the work.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-content">
-    <div class="footer-logo">Codices</div>
-    <div class="footer-contact">
-      <a href="mailto:info@codices.lat">info@codices.lat</a>
-      <span>•</span>
-      <a href="https://api.whatsapp.com/send?phone=595976194641">WhatsApp: +595 976 19 46 41</a>
-      <span>•</span>
-      <a href="https://gilbertkieffer.com" target="_blank">Gilbert Kieffer Studio</a>
+  <!-- OTHER PROJECTS -->
+  <section class="band" id="proyectos">
+    <div class="wrap">
+      <div class="head">
+        <p class="label"><span data-l="es">Proyectos</span><span data-l="en">Projects</span></p>
+        <!--RENDERS-START-->
+        <h2 data-l="es">Propuesta para una torre residencial</h2>
+        <h2 data-l="en">Proposal for a residential tower</h2>
+        <p class="sub" data-l="es">Obras de Gilbert Kieffer para el lobby y los departamentos, visualizadas sobre los renders del proyecto antes de producirlas.</p>
+        <p class="sub" data-l="en">Works by Gilbert Kieffer for the lobby and apartments, visualised on the project renderings before production.</p>
+      </div>
+      <div class="renders">
+        <figure class="frame">
+          <img src="images/propuesta-lobby-1.jpg" width="1600" height="900" alt="Render de un lobby con paneles de madera y una obra panorámica de Gilbert Kieffer junto a la zona de estar.">
+          <figcaption data-l="es"><b>Lobby · opción I</b>Barca Taína, en formato panorámico sobre el muro de madera.</figcaption>
+          <figcaption data-l="en"><b>Lobby · option I</b>Barca Taína, in panoramic format on the wood-panelled wall.</figcaption>
+        </figure>
+        <figure class="frame">
+          <img src="images/propuesta-lobby-2.jpg" width="1600" height="900" alt="El mismo lobby con otra obra de Gilbert Kieffer, en tonos plata y azul.">
+          <figcaption data-l="es"><b>Lobby · opción II</b>El mismo muro con Cohoba, signo en contexto fractal (Colección NY).</figcaption>
+          <figcaption data-l="en"><b>Lobby · option II</b>The same wall with Cohoba, a sign in fractal context (NY Collection).</figcaption>
+        </figure>
+        <figure class="frame wide">
+          <img src="images/propuesta-sala-lounge.jpg" width="1115" height="648" alt="Render de una sala de departamento con vista a la ciudad y una obra circular de Gilbert Kieffer sobre el muro de concreto.">
+          <figcaption data-l="es"><b>Sala lounge</b>Colibrí, Calendario Maya al atardecer, frente a la vista de la ciudad.</figcaption>
+          <figcaption data-l="en"><b>Lounge</b>Colibrí, Mayan Calendar at sunset, facing the city view.</figcaption>
+        </figure>
+      </div>
+      <p class="kind-line">Codices Art · <span data-l="es">Propuesta en revisión, 2026</span><span data-l="en">Proposal under review, 2026</span></p>
+
+      <div class="orn" aria-hidden="true"><i></i></div>
+      <!--RENDERS-END-->
+      <h3 class="d past-title" data-l="es">Otros proyectos</h3>
+      <h3 class="d past-title" data-l="en">Other projects</h3>
+      <div class="past">
+        <article>
+          <h3 class="d" data-l="es">Departamento, Asunción</h3>
+          <h3 class="d" data-l="en">Apartment, Asunción</h3>
+          <p class="kind">Codices Decor</p>
+          <p data-l="es">Un departamento de dos dormitorios para estadías de mediano plazo, con una obra original como centro de cada ambiente.</p>
+          <p data-l="en">A two-bedroom apartment for medium-term stays, with an original work at the centre of each room.</p>
+        </article>
+      </div>
     </div>
-    <div class="footer-bottom">
-      <p><strong>Contacto:</strong> Vivianne Kieffer | info@codices.lat</p>
-      <p>&copy; 2024 Codices. Arte Digital Ancestral para Espacios Contemporáneos.</p>
-      <p style="margin-top: 0.5rem;">Asunción, Paraguay</p>
+  </section>
+
+  <!-- COMING SOON -->
+  <section class="band soon-band" id="proximamente">
+    <div class="wrap">
+      <div class="head">
+        <p class="label"><span data-l="es">En desarrollo</span><span data-l="en">In development</span></p>
+        <h2 data-l="es">Próximamente en Codices</h2>
+        <h2 data-l="en">Coming to Codices</h2>
+        <p class="sub" data-l="es">Codices crece del muro a toda la casa, con un saber vivir propio.</p>
+        <p class="sub" data-l="en">Codices is growing from the wall to the whole home, with a savoir-vivre of its own.</p>
+      </div>
+      <div class="soon-grid">
+        <div class="soon-card">
+          <p class="tagline"><span data-l="es">Próximamente</span><span data-l="en">Coming soon</span></p>
+          <h3 class="d"><span data-l="es">La mesa Codices</span><span data-l="en">The Codices table</span></h3>
+          <p data-l="es">Decoración de la mesa en el estilo Codices: vajilla, mantelería, centros de mesa y libros de arte.</p>
+          <p data-l="en">Table decoration in the Codices style: dinnerware, linens, centrepieces and art books.</p>
+        </div>
+        <div class="soon-card">
+          <p class="tagline"><span data-l="es">Próximamente</span><span data-l="en">Coming soon</span></p>
+          <h3 class="d">Savoir-vivre Codices</h3>
+          <p data-l="es">Clases y estilos para recibir, poner la mesa y vivir el espacio con arte.</p>
+          <p data-l="en">Classes and styles for hosting, setting the table and living with art.</p>
+        </div>
+      </div>
+      <p class="soon-note" data-l="es">Escríbenos si quieres saber cuándo abrimos.</p>
+      <p class="soon-note" data-l="en">Write to us if you would like to know when we open.</p>
     </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="band" id="proceso">
+    <div class="wrap">
+      <div class="head">
+        <p class="label"><span data-l="es">Cómo trabajamos</span><span data-l="en">How we work</span></p>
+        <h2 data-l="es">Del plano al muro</h2>
+        <h2 data-l="en">From plan to wall</h2>
+      </div>
+      <ol class="steps">
+        <li>
+          <h3 class="d"><span data-l="es">Visita</span><span data-l="en">Visit</span></h3>
+          <p data-l="es">Recorremos el espacio, en persona o a partir de planos, y definimos uso, presupuesto y plazos.</p>
+          <p data-l="en">We walk the space, in person or from plans, and agree on use, budget and timing.</p>
+        </li>
+        <li>
+          <h3 class="d"><span data-l="es">Propuesta</span><span data-l="en">Proposal</span></h3>
+          <p data-l="es">Colección, medidas de cada muro y visualización de las obras en tu espacio.</p>
+          <p data-l="en">Collection, dimensions for each wall and a visualisation of the works in your space.</p>
+        </li>
+        <li>
+          <h3 class="d"><span data-l="es">Producción</span><span data-l="en">Production</span></h3>
+          <p data-l="es">Impresión en canvas y enmarcado de cada obra.</p>
+          <p data-l="en">Canvas printing and framing of every work.</p>
+        </li>
+        <li>
+          <h3 class="d"><span data-l="es">Instalación</span><span data-l="en">Installation</span></h3>
+          <p data-l="es">Montamos las obras y entregamos el espacio listo.</p>
+          <p data-l="en">We hang the works and hand over the space ready.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="band contact" id="contacto">
+    <div class="wrap">
+      <p class="label"><span data-l="es">Contacto</span><span data-l="en">Contact</span></p>
+      <h2 data-l="es">Cuéntanos sobre tu espacio</h2>
+      <h2 data-l="en">Tell us about your space</h2>
+      <p class="sub" data-l="es">Cada proyecto se cotiza a medida. Envíanos planos o fotos, el tipo de espacio y la fecha en que lo necesitas listo.</p>
+      <p class="sub" data-l="en">Every project is quoted individually. Send us plans or photos, the type of space and the date you need it ready.</p>
+      <div class="channels">
+        <div class="channel">
+          <div class="k">Email</div>
+          <div class="v" id="v-mail">info@codices.lat</div>
+          <button class="copy" type="button" id="copy-mail" data-target="v-mail"><span data-l="es">Copiar</span><span data-l="en">Copy</span></button>
+        </div>
+      </div>
+      <p class="where">Vivianne Kieffer · <span data-l="es">Asunción, Paraguay · Proyectos en toda Latinoamérica</span><span data-l="en">Asunción, Paraguay · Projects across Latin America</span></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="wordmark" aria-hidden="true">CODICES</span>
+    <p>CODICES DECOR · CODICES ART · © 2026</p>
   </div>
 </footer>
 
 <script>
-  function openGallery(collection) {
-    document.getElementById(collection + 'Modal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeGallery(collection) {
-    document.getElementById(collection + 'Modal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
-
-  window.addEventListener('click', function(event) {
-    const modals = document.querySelectorAll('.modal');
-    modals.forEach(modal => {
-      if (event.target === modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      }
-    });
-  });
-
-  window.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-      const modals = document.querySelectorAll('.modal');
-      modals.forEach(modal => {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      });
+  (function () {
+    var body = document.body;
+    var btns = document.querySelectorAll(".lang button");
+    function setLang(l) {
+      body.setAttribute("data-lang", l);
+      document.documentElement.lang = l;
+      btns.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.set === l)); });
+      try { localStorage.setItem("codices-lang", l); } catch (e) {}
     }
-  });
+    var start = "es";
+    try { start = localStorage.getItem("codices-lang") || "es"; } catch (e) {}
+    if (location.hash === "#en") start = "en";
+    if (location.hash === "#es") start = "es";
+    setLang(start);
+    btns.forEach(function (b) { b.addEventListener("click", function () { setLang(b.dataset.set); }); });
+
+    document.querySelectorAll(".copy").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var el = document.getElementById(btn.dataset.target);
+        var text = el.textContent.trim();
+        function selectIt() {
+          var r = document.createRange(); r.selectNodeContents(el);
+          var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            var old = btn.innerHTML;
+            btn.textContent = body.dataset.lang === "en" ? "Copied" : "Copiado";
+            setTimeout(function () { btn.innerHTML = old; }, 1600);
+          }, selectIt);
+        } else { selectIt(); }
+      });
+    });
+  })();
 </script>
 
 </body>
