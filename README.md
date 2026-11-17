@@ -31,5 +31,5 @@ Each site is deployed to Netlify via this GitHub repository.
 ## Contact
 
 - Ikanothia: info@ikanothia.com
-- Bloom After 35: vivianne@bloomafter35.com
+- Bloom After 35: bloomafter35@gmail.com
 - Gilbert Kieffer: contact@gilbertkieffer.com
